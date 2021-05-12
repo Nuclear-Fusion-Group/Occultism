@@ -1,0 +1,18 @@
+modLoader="javafml" #mandatory
+
+loaderVersion="[36,)"
+license="GNU-GPL-3.0"
+
+[[mods]]
+
+modId="occultism"
+
+version="${file.jarVersion}"
+
+displayName="Occultism"
+
+logoFile="occultism.png"
+
+description='''
+Occultism
+'''
