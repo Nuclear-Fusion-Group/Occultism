@@ -1,5 +1,6 @@
 package com.occultism;
 
+import com.occultism.item.OIItems;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
@@ -16,9 +17,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
-@Mod("occultism")
+@Mod(Occultism.ID)
 public class Occultism
 {
+    //modid 方便导入
+    public static final String ID = "occultism";
     private static final Logger LOGGER = LogManager.getLogger();
 
     public Occultism() {
@@ -27,6 +30,8 @@ public class Occultism
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onClientSetup);
         MinecraftForge.EVENT_BUS.register(this);
+        //物品注册
+        OIItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 
     private void onCommonSetup(final FMLCommonSetupEvent event) {
