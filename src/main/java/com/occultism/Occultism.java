@@ -1,6 +1,7 @@
 package com.occultism;
 
 import com.occultism.item.OIItems;
+import com.occultism.network.OINetwork;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
@@ -35,7 +36,7 @@ public class Occultism
     }
 
     private void onCommonSetup(final FMLCommonSetupEvent event) {
-
+        event.enqueueWork(OINetwork::registerMessage);
     }
 
     private void onClientSetup(final FMLClientSetupEvent event) {

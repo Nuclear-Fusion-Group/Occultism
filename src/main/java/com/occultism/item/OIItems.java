@@ -14,6 +14,7 @@ public class OIItems {
 
     public static final RegistryObject<Item> item_1 = ITEMS.register("item_1", () -> new Item(defaultBuilder()));
     public static final RegistryObject<Item> item_2 = ITEMS.register("item_2", () -> new Item(defaultBuilder()));
+    public static final RegistryObject<Item> item_root_stick = ITEMS.register("item_root_stick", () -> new ItemRootStick());
 
     //±Í«©“≥
     public static ItemGroup creativeTab = new ItemGroup(Occultism.ID) {
