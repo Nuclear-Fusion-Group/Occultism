@@ -1,5 +1,6 @@
 package com.occultism;
 
+import com.occultism.block.OIBlocks;
 import com.occultism.item.OIItems;
 import com.occultism.network.OINetwork;
 import net.minecraft.block.Block;
@@ -19,8 +20,7 @@ import org.apache.logging.log4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(Occultism.ID)
-public class Occultism
-{
+public class Occultism {
     //modid 方便导入
     public static final String ID = "occultism";
     private static final Logger LOGGER = LogManager.getLogger();
@@ -33,6 +33,8 @@ public class Occultism
         MinecraftForge.EVENT_BUS.register(this);
         //物品注册
         OIItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
+        //方块注册
+        OIBlocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 
     private void onCommonSetup(final FMLCommonSetupEvent event) {
@@ -58,7 +60,7 @@ public class Occultism
 
     // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD
     // Event bus for receiving Registry Events)
-    @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
+    @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class RegistryEvents {
         @SubscribeEvent
         public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {

@@ -1,6 +1,8 @@
 package com.occultism.item;
 
 import com.occultism.Occultism;
+import com.occultism.block.OIBlocks;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -16,6 +18,8 @@ public class OIItems {
     public static final RegistryObject<Item> item_2 = ITEMS.register("item_2", () -> new Item(defaultBuilder()));
     public static final RegistryObject<Item> item_root_stick = ITEMS.register("item_root_stick", () -> new ItemRootStick());
 
+    public static final RegistryObject<Item> block_1 = ITEMS.register("block_1", () -> new BlockItem(OIBlocks.block_1.get(), defaultBuilder()));
+
     //标签页
     public static ItemGroup creativeTab = new ItemGroup(Occultism.ID) {
         @Override
@@ -24,7 +28,8 @@ public class OIItems {
         }
     };
 
-    /**自动导入到标签页
+    /**
+     * 自动导入到标签页
      * 不知道为啥是用的tab 而不是group
      */
     public static Item.Properties defaultBuilder() {
