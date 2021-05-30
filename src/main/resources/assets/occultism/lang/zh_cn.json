@@ -2,5 +2,11 @@
   "itemGroup.occultism": "Occultism",
   "item.occultism.item_1": "物品1",
   "item.occultism.item_2": "物品2",
-  "item.occultism.item_root_stick": "测试小木棍"
+  "item.occultism.item_root_stick": "测试小木棍",
+  "block.occultism.block_1": "方块1",
+  "block.occultism.orebrass": "黄铜矿",
+  "block.occultism.oremithril": "秘银矿",
+  "block.occultism.oreleadzinc": "铅锌矿",
+  "block.occultism.orebauxite": "铝土矿",
+  "block.occultism.oretinstone": "锡石矿"
 }

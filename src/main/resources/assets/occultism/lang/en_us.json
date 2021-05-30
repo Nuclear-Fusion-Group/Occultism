@@ -2,5 +2,11 @@
   "itemGroup.occultism": "Occultism",
   "item.occultism.item_1": "item1",
   "item.occultism.item_2": "item2",
-  "item.occultism.item_root_stick": "debug"
+  "item.occultism.item_root_stick": "debug",
+  "block.occultism.block_1": "block1",
+  "block.occultism.orebrass": "OreBrass",
+  "block.occultism.oremithril": "OreMithril",
+  "block.occultism.oreleadzinc": "OreLeadZinc",
+  "block.occultism.orebauxite": "OreBauxite",
+  "block.occultism.oretinstone": "OreTinStone"
 }
