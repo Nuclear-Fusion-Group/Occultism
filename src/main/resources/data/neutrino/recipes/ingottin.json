@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "occultism:oretinstone"
+  },
+  "result": "occultism:ingottin",
+  "experience": 0.35,
+  "cookingtime": 200
+}

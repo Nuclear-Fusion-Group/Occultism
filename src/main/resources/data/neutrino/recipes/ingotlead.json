@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "occultism:oreleadzinc"
+  },
+  "result": "occultism:ingotlead",
+  "experience": 0.35,
+  "cookingtime": 200
+}

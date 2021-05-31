@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "occultism:orebauxite"
+  },
+  "result": "occultism:ingotaluminium",
+  "experience": 0.35,
+  "cookingtime": 200
+}

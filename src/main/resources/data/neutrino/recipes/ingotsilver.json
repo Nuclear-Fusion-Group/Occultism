@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "occultism:oremithril"
+  },
+  "result": "occultism:ingotsilver",
+  "experience": 0.35,
+  "cookingtime": 200
+}
