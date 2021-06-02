@@ -10,10 +10,12 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
-//暂时还用不了
-/*
+/**
+ * range(int)疑似生成后渲染距离
+ * count(int)不知道干嘛的 谁知道就在这里标一下
+ */
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
-public class OIBiome {
+public class addOre {
     public static ConfiguredFeature<?,?> ORE_COPPER_CONFIG;
 
     @SubscribeEvent
@@ -22,11 +24,10 @@ public class OIBiome {
                 Feature.ORE.configured(
                         new OreFeatureConfig(
                                 OreFeatureConfig.FillerBlockType.NATURAL_STONE,
-                                OIBlocks.orebrass.get().defaultBlockState(),90//最多数量
+                                OIBlocks.orebrass.get().defaultBlockState(),8//最多数量
                         )
-                ).range(64).squared().count(100)
+                ).range(64).squared().count(20)
         );
     }
 }
 
- */
