@@ -1,12 +1,16 @@
 package com.occultism;
 
+import com.occultism.biome.addOre;
 import com.occultism.block.OIBlocks;
 import com.occultism.item.OIItems;
 import com.occultism.network.OINetwork;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.GenerationStage;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -56,6 +60,16 @@ public class Occultism {
     @SubscribeEvent
     public void onServerStarting(FMLServerStartingEvent event) {
 
+    }
+
+    //¿óÎïÉú³É
+    @SubscribeEvent
+    public void onBiomeLoading(final BiomeLoadingEvent biome) {
+        if (biome.getCategory() == Biome.Category.NETHER || biome.getCategory() == Biome.Category.THEEND)
+            return;
+
+        biome.getGeneration().getFeatures(GenerationStage.Decoration.UNDERGROUND_ORES)
+                .add(() -> addOre.ORE_COPPER_CONFIG);
     }
 
     // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD

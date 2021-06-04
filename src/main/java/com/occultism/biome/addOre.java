@@ -1,5 +1,6 @@
 package com.occultism.biome;
 
+import com.occultism.Occultism;
 import com.occultism.block.OIBlocks;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
@@ -14,17 +15,17 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
  * range(int)疑似生成后渲染距离
  * count(int)不知道干嘛的 谁知道就在这里标一下
  */
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = Occultism.ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class addOre {
-    public static ConfiguredFeature<?,?> ORE_COPPER_CONFIG;
+    public static ConfiguredFeature<?, ?> ORE_COPPER_CONFIG;
 
     @SubscribeEvent
-    public static void setup(FMLCommonSetupEvent event){
-        ORE_COPPER_CONFIG = Registry.register(WorldGenRegistries.CONFIGURED_FEATURE,"ore_copper",
+    public static void setup(FMLCommonSetupEvent event) {
+        ORE_COPPER_CONFIG = Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, "ore_copper",
                 Feature.ORE.configured(
                         new OreFeatureConfig(
                                 OreFeatureConfig.FillerBlockType.NATURAL_STONE,
-                                OIBlocks.orebrass.get().defaultBlockState(),8//最多数量
+                                OIBlocks.orebrass.get().defaultBlockState(), 8//最多数量
                         )
                 ).range(64).squared().count(20)
         );
