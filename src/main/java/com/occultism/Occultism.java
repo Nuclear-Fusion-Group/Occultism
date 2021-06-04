@@ -70,6 +70,14 @@ public class Occultism {
 
         biome.getGeneration().getFeatures(GenerationStage.Decoration.UNDERGROUND_ORES)
                 .add(() -> addOre.ORE_COPPER_CONFIG);
+        biome.getGeneration().getFeatures(GenerationStage.Decoration.UNDERGROUND_ORES)
+                .add(() -> addOre.ORE_SILVER_CONFIG);
+        biome.getGeneration().getFeatures(GenerationStage.Decoration.UNDERGROUND_ORES)
+                .add(() -> addOre.ORE_LEAD_CONFIG);
+        biome.getGeneration().getFeatures(GenerationStage.Decoration.UNDERGROUND_ORES)
+                .add(() -> addOre.ORE_ALUMINIUM_CONFIG);
+        biome.getGeneration().getFeatures(GenerationStage.Decoration.UNDERGROUND_ORES)
+                .add(() -> addOre.ORE_TIN_CONFIG);
     }
 
     // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD
