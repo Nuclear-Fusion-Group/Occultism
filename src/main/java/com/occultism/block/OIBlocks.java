@@ -16,6 +16,8 @@ public class OIBlocks {
     /**矿物
      * harvestLevel(int) 设置挖掘等级
      * harvestTool(ToolType) 设置挖掘工具
+     * friction(float) 设置光滑度
+     * strength(float) 设置硬度
      */
     public static final RegistryObject<Block> orebrass = BLOCKS.register("orebrass", () -> new Block(defaultBuilder().harvestLevel(2)));
     public static final RegistryObject<Block> oremithril = BLOCKS.register("oremithril", () -> new Block(defaultBuilder().harvestLevel(3)));
@@ -36,6 +38,7 @@ public class OIBlocks {
      */
     public static AbstractBlock.Properties defaultBuilder() {
         return AbstractBlock.Properties.of(Material.STONE)
-                .harvestTool(ToolType.PICKAXE);
+                .harvestTool(ToolType.PICKAXE)
+                .strength(3F);
     }
 }
