@@ -3,7 +3,10 @@ package com.occultism.block;
 import com.occultism.Occultism;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.FlowerBlock;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.DyeColor;
+import net.minecraft.potion.Effects;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -13,7 +16,8 @@ public class OIBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Occultism.ID);
 
     public static final RegistryObject<Block> block_1 = BLOCKS.register("block_1", () -> new Block(defaultBuilder(Material.AIR)));
-    /**矿物
+    /**
+     * 矿物
      * harvestLevel(int) 设置挖掘等级
      * harvestTool(ToolType) 设置挖掘工具
      * friction(float) 设置光滑度
@@ -25,6 +29,10 @@ public class OIBlocks {
     public static final RegistryObject<Block> orebauxite = BLOCKS.register("orebauxite", () -> new Block(defaultBuilder().harvestLevel(3)));
     public static final RegistryObject<Block> oretinstone = BLOCKS.register("oretinstone", () -> new Block(defaultBuilder().harvestLevel(2)));
 
+    /**
+     * DIG_SPEED 蓝色
+     */
+    public static final RegistryObject<Block> flower = BLOCKS.register("flower", () -> new FlowerBlock(Effects.NIGHT_VISION, 4, defaultBuilder()));
 
     /**
      * 方块构造方法

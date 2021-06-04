@@ -21,7 +21,8 @@ public class OINetwork {
     public static int nextID() {
         return ID++;
     }
-//  注册通讯包
+
+    //  注册通讯包
     public static void registerMessage() {
         INSTANCE = NetworkRegistry.newSimpleChannel(
                 new ResourceLocation(Occultism.ID, "main_channel"),

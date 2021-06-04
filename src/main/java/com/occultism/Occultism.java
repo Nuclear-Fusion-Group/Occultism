@@ -1,6 +1,6 @@
 package com.occultism;
 
-import com.occultism.biome.addOre;
+import com.occultism.world.addOre;
 import com.occultism.block.OIBlocks;
 import com.occultism.item.OIItems;
 import com.occultism.network.OINetwork;

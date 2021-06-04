@@ -11,6 +11,9 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.PacketDistributor;
+
+import javax.annotation.Nonnull;
+
 /**
  * Transferred from Boson 1.16 Modding Tutorial
  * https://boson.v2mcdev.com/networking/custompack.html
@@ -21,8 +24,10 @@ public class ItemRootStick extends Item {
     public ItemRootStick() {
         super(OIItems.defaultBuilder());
     }
+
+    @Nonnull
     @Override
-    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+    public ActionResult<ItemStack> use(World worldIn, @Nonnull PlayerEntity playerIn,@Nonnull Hand handIn) {
         if (worldIn.isClientSide) {
 //          向服务器发包
             OINetwork.INSTANCE.sendToServer(new ExamplePack("From the Client"));

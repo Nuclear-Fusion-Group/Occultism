@@ -10,6 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.function.Supplier;
+
 /**
  * Transferred from Boson 1.16 Modding Tutorial
  * https://boson.v2mcdev.com/networking/custompack.html
@@ -20,28 +21,31 @@ import java.util.function.Supplier;
 public class ExamplePack {
     private final String message;
     private static final Logger LOGGER = LogManager.getLogger();
-//  反序列化
+
+    //  反序列化
 //  数据逐行读取，与toBytes相对称
     public ExamplePack(PacketBuffer buffer) {
         message = buffer.readUtf(Short.MAX_VALUE);
     }
-//  输入要传递的讯息
+
+    //  输入要传递的讯息
     public ExamplePack(String message) {
         this.message = message;
     }
 
-//  序列化
+    //  序列化
 //  数据逐行序列化
     public void toBytes(PacketBuffer buf) {
         buf.writeUtf(this.message);
     }
-//  代码执行
+
+    //  代码执行
     public void handler(Supplier<NetworkEvent.Context> ctx) {
         ctx.get().enqueueWork(() -> {
-            if(ctx.get().getDirection().getOriginationSide().isClient()){
+            if (ctx.get().getDirection().getOriginationSide().isClient()) {
                 ServerPlayerEntity player = ctx.get().getSender();
-                player.displayClientMessage(new StringTextComponent(message),true);
-            }else {
+                player.displayClientMessage(new StringTextComponent(message), true);
+            } else {
                 LOGGER.info(this.message);
             }
         });

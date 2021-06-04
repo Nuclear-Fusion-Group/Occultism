@@ -1,4 +1,4 @@
-package com.occultism.biome;
+package com.occultism.world;
 
 import com.occultism.Occultism;
 import com.occultism.block.OIBlocks;
@@ -19,9 +19,9 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 public class addOre {
     public static ConfiguredFeature<?, ?> ORE_COPPER_CONFIG;
     public static ConfiguredFeature<?, ?> ORE_SILVER_CONFIG;
-    public static ConfiguredFeature<?,?> ORE_LEAD_CONFIG;
-    public static ConfiguredFeature<?,?> ORE_ALUMINIUM_CONFIG;
-    public static ConfiguredFeature<?,?> ORE_TIN_CONFIG;
+    public static ConfiguredFeature<?, ?> ORE_LEAD_CONFIG;
+    public static ConfiguredFeature<?, ?> ORE_ALUMINIUM_CONFIG;
+    public static ConfiguredFeature<?, ?> ORE_TIN_CONFIG;
 
     @SubscribeEvent
     public static void setup(FMLCommonSetupEvent event) {
