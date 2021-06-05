@@ -1,9 +1,11 @@
 package com.occultism.block;
 
 import com.occultism.Occultism;
+import com.occultism.fluid.FluidRegister;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.FlowerBlock;
+import net.minecraft.block.FlowingFluidBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.potion.Effects;
 import net.minecraftforge.common.ToolType;
@@ -27,6 +29,13 @@ public class OIBlocks {
     public static final RegistryObject<Block> oreleadzinc = BLOCKS.register("oreleadzinc", () -> new Block(defaultBuilder().harvestLevel(3)));
     public static final RegistryObject<Block> orebauxite = BLOCKS.register("orebauxite", () -> new Block(defaultBuilder().harvestLevel(3)));
     public static final RegistryObject<Block> oretinstone = BLOCKS.register("oretinstone", () -> new Block(defaultBuilder().harvestLevel(2)));
+    //Á÷Ìå
+    public static final RegistryObject<FlowingFluidBlock> manarubikcube = BLOCKS.register("mana_fluid", () ->
+            new FlowingFluidBlock(FluidRegister.mana_fluid,
+                    defaultBuilder(Material.WATER)
+                            .noCollission()
+                            .strength(100.0F)
+                            .noDrops()));
 
     /**
      * DIG_SPEED À¶É«

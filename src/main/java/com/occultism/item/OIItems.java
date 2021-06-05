@@ -2,10 +2,8 @@ package com.occultism.item;
 
 import com.occultism.Occultism;
 import com.occultism.block.OIBlocks;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
+import com.occultism.fluid.FluidRegister;
+import net.minecraft.item.*;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -21,6 +19,8 @@ public class OIItems {
     public static final RegistryObject<Item> item_root_stick = ITEMS.register("item_root_stick", ItemRootStick::new);
 
     public static final RegistryObject<Item> block_1 = ITEMS.register("block_1", () -> new BlockItem(OIBlocks.block_1.get(), defaultBuilder()));
+    //Í°
+    public static final RegistryObject<Item> mana_buckte = ITEMS.register("mana_fluid_buckte", () -> new BucketItem(FluidRegister.mana_fluid,defaultBuilder()));
     //¿óÎï
     public static final RegistryObject<Item> orebrass = ITEMS.register("orebrass", () -> new BlockItem(OIBlocks.orebrass.get(), defaultBuilder()));
     public static final RegistryObject<Item> oremithril = ITEMS.register("oremithril", () -> new BlockItem(OIBlocks.oremithril.get(), defaultBuilder()));

@@ -1,5 +1,6 @@
 package com.occultism;
 
+import com.occultism.fluid.FluidRegister;
 import com.occultism.world.addOre;
 import com.occultism.block.OIBlocks;
 import com.occultism.item.OIItems;
@@ -39,6 +40,8 @@ public class Occultism {
         OIItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
         //方块注册
         OIBlocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
+        //流体正常
+        FluidRegister.FLUIDS.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 
     private void onCommonSetup(final FMLCommonSetupEvent event) {
