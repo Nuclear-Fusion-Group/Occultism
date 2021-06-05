@@ -10,13 +10,15 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import javax.annotation.Nonnull;
+
 public class OIItems {
     //物品注册
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Occultism.ID);
 
     public static final RegistryObject<Item> item_1 = ITEMS.register("item_1", () -> new Item(defaultBuilder()));
     public static final RegistryObject<Item> item_2 = ITEMS.register("item_2", () -> new Item(defaultBuilder()));
-    public static final RegistryObject<Item> item_root_stick = ITEMS.register("item_root_stick", () -> new ItemRootStick());
+    public static final RegistryObject<Item> item_root_stick = ITEMS.register("item_root_stick", ItemRootStick::new);
 
     public static final RegistryObject<Item> block_1 = ITEMS.register("block_1", () -> new BlockItem(OIBlocks.block_1.get(), defaultBuilder()));
     //矿物
@@ -34,6 +36,7 @@ public class OIItems {
 
     //标签页
     public static ItemGroup creativeTab = new ItemGroup(Occultism.ID) {
+        @Nonnull
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(OIItems.item_1.get());

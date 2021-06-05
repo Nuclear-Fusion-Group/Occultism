@@ -4,7 +4,6 @@ package com.occultism.network.message_packs;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.fml.network.NetworkEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -44,7 +43,9 @@ public class ExamplePack {
         ctx.get().enqueueWork(() -> {
             if (ctx.get().getDirection().getOriginationSide().isClient()) {
                 ServerPlayerEntity player = ctx.get().getSender();
-                player.displayClientMessage(new StringTextComponent(message), true);
+                if (player != null) {
+                    player.displayClientMessage(new StringTextComponent(message), true);
+                }
             } else {
                 LOGGER.info(this.message);
             }
