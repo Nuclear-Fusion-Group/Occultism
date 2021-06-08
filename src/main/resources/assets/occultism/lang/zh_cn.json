@@ -7,6 +7,8 @@
   "item.occultism.ingotlead": "铅",
   "item.occultism.ingotaluminium": "铝",
   "item.occultism.ingottin": "锡",
+  "item.occultism.fluid_bucket": "瓶子",
+  "item.occultism.mana_fluid_bucket": "魔力瓶",
   "item.occultism.item_root_stick": "测试小木棍",
   "block.occultism.block_1": "方块1",
   "block.occultism.orebrass": "黄铜矿",

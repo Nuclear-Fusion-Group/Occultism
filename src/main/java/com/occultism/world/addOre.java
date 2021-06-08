@@ -12,8 +12,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
 /**
- * range(int)疑似生成后渲染距离
- * count(int)不知道干嘛的 谁知道就在这里标一下
+ * range(int) 0到int都生成
+ * count(int)不知道干嘛的 谁知道就在这里标一下 疑似权重值
  */
 @Mod.EventBusSubscriber(modid = Occultism.ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class addOre {

@@ -18,7 +18,7 @@ import javax.annotation.Nonnull;
  * Transferred from Boson 1.16 Modding Tutorial
  * https://boson.v2mcdev.com/networking/custompack.html
  * 测试用小木棍
- * 因为不知道做什么就把这个肯定会用上的东西写了
+ * 因为不知道做什么就把 这个肯定会用上的东西写了
  */
 public class ItemRootStick extends Item {
     public ItemRootStick() {

@@ -26,7 +26,7 @@ public class FluidRegister {
                     .color(0xFF420372)//颜色代码 每两位16进制数代表了ARGB的一个分量，顺序分别是alpha, red, green, blue
                     .density(4000)//稠度
                     .viscosity(4000))
-            .bucket(OIItems.mana_buckte)//桶
+            .bucket(OIItems.mana_bucket)//桶
             .block(OIBlocks.manarubikcube)//水源方块
             .slopeFindDistance(1)//水流消失速度
             .explosionResistance(5F);//防爆等级

@@ -1,16 +1,30 @@
 package com.occultism;
 
-import com.occultism.fluid.FluidRegister;
-import com.occultism.world.addOre;
 import com.occultism.block.OIBlocks;
+import com.occultism.fluid.FluidRegister;
 import com.occultism.item.OIItems;
 import com.occultism.network.OINetwork;
+import com.occultism.world.addOre;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.util.Direction;
+import net.minecraft.util.Hand;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -36,12 +50,12 @@ public class Occultism {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onClientSetup);
         MinecraftForge.EVENT_BUS.register(this);
+        //流体注册
+        FluidRegister.FLUIDS.register(FMLJavaModLoadingContext.get().getModEventBus());
         //物品注册
         OIItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
         //方块注册
         OIBlocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
-        //流体正常
-        FluidRegister.FLUIDS.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 
     private void onCommonSetup(final FMLCommonSetupEvent event) {
@@ -65,6 +79,42 @@ public class Occultism {
 
     }
 
+    @SubscribeEvent
+    public void onBuckte(PlayerInteractEvent.RightClickBlock event) {
+
+        BlockRayTraceResult result = event.getHitVec();
+        BlockPos blockPos = result.getBlockPos();
+        Direction direction = result.getDirection();
+        BlockPos blockPos1 = blockPos.relative(direction);
+
+        World world = event.getWorld();
+        Hand hand = event.getHand();
+        PlayerEntity player = event.getPlayer();
+        ItemStack itemStack = player.getItemInHand(hand);
+        FluidState fluidState;
+
+        //玻璃破碎声音事件
+        SoundEvent soundEvent = SoundEvents.GLASS_BREAK;
+
+
+        fluidState = event.getWorld().getFluidState(blockPos1);
+        //判断是否为瓶子
+        if (itemStack.getItem() != OIItems.bucket.get()) {
+            //判断流体堆是否相同
+            if (fluidState == OIBlocks.manarubikcube.get().getFluidState(OIBlocks.manarubikcube.get().defaultBlockState())) {
+                //此处为修改世界中的流体
+                world.setBlock(blockPos1, Blocks.WATER.defaultBlockState(), 1);
+            }
+        } else {
+            //判断是否为其他流体 是的话移除瓶子 并且播放玻璃破碎声音事件
+            if (fluidState != OIBlocks.manarubikcube.get().getFluidState(OIBlocks.manarubikcube.get().defaultBlockState()) && fluidState != Fluids.EMPTY.defaultFluidState()) {
+                player.setItemInHand(hand, Items.AIR.getDefaultInstance());
+                player.playSound(soundEvent, 1.0F, 1.0F);
+            }
+        }
+    }
+
+
     //矿物生成
     @SubscribeEvent
     public void onBiomeLoading(final BiomeLoadingEvent biome) {
@@ -84,7 +134,7 @@ public class Occultism {
     }
 
     // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD
-    // Event bus for receiving Registry Events)
+// Event bus for receiving Registry Events)
     @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class RegistryEvents {
         @SubscribeEvent
