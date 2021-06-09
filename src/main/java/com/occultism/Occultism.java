@@ -79,6 +79,7 @@ public class Occultism {
 
     }
 
+    //右击事件方块 该函数目的为桶的判断
     @SubscribeEvent
     public void onBuckte(PlayerInteractEvent.RightClickBlock event) {
 
@@ -88,28 +89,32 @@ public class Occultism {
         BlockPos blockPos1 = blockPos.relative(direction);
 
         World world = event.getWorld();
-        Hand hand = event.getHand();
         PlayerEntity player = event.getPlayer();
-        ItemStack itemStack = player.getItemInHand(hand);
+        ItemStack itemStack = player.getItemInHand(Hand.MAIN_HAND);
+        ItemStack itemStack1 = player.getItemInHand(Hand.OFF_HAND);
         FluidState fluidState;
 
         //玻璃破碎声音事件
         SoundEvent soundEvent = SoundEvents.GLASS_BREAK;
 
-
         fluidState = event.getWorld().getFluidState(blockPos1);
         //判断是否为瓶子
-        if (itemStack.getItem() != OIItems.bucket.get()) {
+        if (itemStack.getItem() != OIItems.bucket.get() && itemStack.getItem() != Items.AIR && itemStack.getItem() != OIItems.mana_bucket.get()) {
             //判断流体堆是否相同
             if (fluidState == OIBlocks.manarubikcube.get().getFluidState(OIBlocks.manarubikcube.get().defaultBlockState())) {
                 //此处为修改世界中的流体
-                world.setBlock(blockPos1, Blocks.WATER.defaultBlockState(), 1);
+                world.setBlockAndUpdate(blockPos1, Blocks.WATER.defaultBlockState());
             }
         } else {
             //判断是否为其他流体 是的话移除瓶子 并且播放玻璃破碎声音事件
             if (fluidState != OIBlocks.manarubikcube.get().getFluidState(OIBlocks.manarubikcube.get().defaultBlockState()) && fluidState != Fluids.EMPTY.defaultFluidState()) {
-                player.setItemInHand(hand, Items.AIR.getDefaultInstance());
-                player.playSound(soundEvent, 1.0F, 1.0F);
+                if (itemStack.getItem() == OIItems.bucket.get()) {
+                    player.setItemInHand(Hand.MAIN_HAND, Items.AIR.getDefaultInstance());
+                    player.playSound(soundEvent, 1.0F, 1.0F);
+                } else if (itemStack1.getItem() == OIItems.bucket.get()) {
+                    player.setItemInHand(Hand.OFF_HAND, Items.AIR.getDefaultInstance());
+                    player.playSound(soundEvent, 1.0F, 1.0F);
+                }
             }
         }
     }

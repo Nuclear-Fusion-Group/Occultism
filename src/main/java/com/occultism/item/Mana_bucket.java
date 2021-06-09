@@ -1,5 +1,6 @@
 package com.occultism.item;
 
+import com.occultism.block.OIBlocks;
 import com.occultism.fluid.FluidRegister;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.player.PlayerEntity;
@@ -60,6 +61,8 @@ public class Mana_bucket extends BucketItem {
                 if (!world.isClientSide) {
                     CriteriaTriggers.FILLED_BUCKET.trigger((ServerPlayerEntity) playerEntity, OIItems.bucket.get().getDefaultInstance());
                 }
+                //设置流体并更新
+                world.setBlockAndUpdate(world.getFluidState(blockPos).isEmpty() ? blockPos1 : blockPos, OIBlocks.manarubikcube.get().defaultBlockState());
 
                 return ActionResult.sidedSuccess(itemStack1, world.isClientSide());
             } else {

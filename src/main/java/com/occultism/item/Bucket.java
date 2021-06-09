@@ -1,12 +1,9 @@
 package com.occultism.item;
 
 import com.occultism.fluid.FluidRegister;
-import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.IBucketPickupHandler;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.fluid.Fluid;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BucketItem;
 import net.minecraft.item.ItemStack;
@@ -24,7 +21,7 @@ public class Bucket extends BucketItem {
 
     //构造函数
     public Bucket() {
-        super(() -> Fluids.EMPTY, OIItems.defaultBuilder().stacksTo(16));
+        super(() -> Fluids.EMPTY, OIItems.defaultBuilder().stacksTo(1));
     }
 
 
@@ -53,29 +50,23 @@ public class Bucket extends BucketItem {
             Direction direction = blockRayTraceResult.getDirection();
             //对应方向的方块坐标
             BlockPos blockPos1 = blockPos.relative(direction);
+            BlockPos blockPos2;
             //方块互动和物品互动同时成立时
             if (world.mayInteract(playerEntity, blockPos) && playerEntity.mayUseItemAt(blockPos1, direction, itemStack)) {
-                //获取世界当中的方块堆
-                BlockState blockState = world.getBlockState(blockPos);
-                //获取流体
-                Fluid fluid = ((IBucketPickupHandler) blockState.getBlock()).takeLiquid(world, blockPos, blockState);
+                FluidState fluidState = world.getFluidState(blockPos1);
                 //声音事件
                 SoundEvent soundEvent = FluidRegister.mana_fluid.get().getFluid().getAttributes().getFillSound();
                 if (soundEvent == null)
                     soundEvent = SoundEvents.BUCKET_FILL;
                 //播放声音
                 playerEntity.playSound(soundEvent, 1.0F, 1.0F);
-                //物品堆
-                ItemStack itemStack1 = DrinkHelper.createFilledResult(itemStack, playerEntity, OIItems.mana_bucket.get().getDefaultInstance());
-                //非客户端
-                if (!world.isClientSide) {
-                    CriteriaTriggers.FILLED_BUCKET.trigger((ServerPlayerEntity) playerEntity, OIItems.mana_bucket.get().getDefaultInstance());
-                }
-
-                return ActionResult.sidedSuccess(itemStack1, world.isClientSide());
+                playerEntity.setItemInHand(hand, OIItems.mana_bucket.get().getDefaultInstance());
+                blockPos2 = fluidState.isEmpty() ? blockPos : blockPos1;
+                world.setBlockAndUpdate(blockPos2, Blocks.AIR.defaultBlockState());
             } else {
-                return ActionResult.pass(itemStack);
+                return ActionResult.fail(itemStack);
             }
+            return ActionResult.fail(itemStack);
         }
     }
 }
