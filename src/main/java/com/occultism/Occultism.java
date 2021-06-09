@@ -1,6 +1,7 @@
 package com.occultism;
 
 import com.occultism.block.OIBlocks;
+import com.occultism.block.TileEntity.TileEntityTypeRegister;
 import com.occultism.fluid.FluidRegister;
 import com.occultism.item.OIItems;
 import com.occultism.network.OINetwork;
@@ -56,6 +57,8 @@ public class Occultism {
         OIItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
         //·½¿é×¢²á
         OIBlocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
+        //TileEntity×¢²á
+        TileEntityTypeRegister.TILE_ENTITY.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 
     private void onCommonSetup(final FMLCommonSetupEvent event) {

@@ -17,6 +17,8 @@ public class OIBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Occultism.ID);
 
     public static final RegistryObject<Block> block_1 = BLOCKS.register("block_1", () -> new Block(defaultBuilder(Material.AIR)));
+
+    public static final RegistryObject<Block> mana_extractor = BLOCKS.register("mana_extractor", ManaExtractor::new);
     /**
      * 矿物
      * harvestLevel(int) 设置挖掘等级
