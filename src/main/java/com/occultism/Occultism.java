@@ -112,10 +112,10 @@ public class Occultism {
             //判断是否为其他流体 是的话移除瓶子 并且播放玻璃破碎声音事件
             if (fluidState != OIBlocks.manarubikcube.get().getFluidState(OIBlocks.manarubikcube.get().defaultBlockState()) && fluidState != Fluids.EMPTY.defaultFluidState()) {
                 if (itemStack.getItem() == OIItems.bucket.get()) {
-                    player.setItemInHand(Hand.MAIN_HAND, Items.AIR.getDefaultInstance());
+                    itemStack.shrink(1);
                     player.playSound(soundEvent, 1.0F, 1.0F);
                 } else if (itemStack1.getItem() == OIItems.bucket.get()) {
-                    player.setItemInHand(Hand.OFF_HAND, Items.AIR.getDefaultInstance());
+                    itemStack1.shrink(1);
                     player.playSound(soundEvent, 1.0F, 1.0F);
                 }
             }

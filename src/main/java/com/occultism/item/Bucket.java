@@ -21,7 +21,7 @@ public class Bucket extends BucketItem {
 
     //构造函数
     public Bucket() {
-        super(() -> Fluids.EMPTY, OIItems.defaultBuilder().stacksTo(1));
+        super(() -> Fluids.EMPTY, OIItems.defaultBuilder().stacksTo(16));
     }
 
 
@@ -58,11 +58,17 @@ public class Bucket extends BucketItem {
                 SoundEvent soundEvent = FluidRegister.mana_fluid.get().getFluid().getAttributes().getFillSound();
                 if (soundEvent == null)
                     soundEvent = SoundEvents.BUCKET_FILL;
+                blockPos2 = fluidState.isEmpty() ? blockPos : blockPos1;
+
+                FluidState fluidState1 = world.getFluidState(blockPos2);
+
+                if (fluidState1.isEmpty()) {
+                    return ActionResult.fail(itemStack);
+                }
+                world.setBlockAndUpdate(blockPos2, Blocks.AIR.defaultBlockState());
                 //播放声音
                 playerEntity.playSound(soundEvent, 1.0F, 1.0F);
                 playerEntity.setItemInHand(hand, OIItems.mana_bucket.get().getDefaultInstance());
-                blockPos2 = fluidState.isEmpty() ? blockPos : blockPos1;
-                world.setBlockAndUpdate(blockPos2, Blocks.AIR.defaultBlockState());
             } else {
                 return ActionResult.fail(itemStack);
             }

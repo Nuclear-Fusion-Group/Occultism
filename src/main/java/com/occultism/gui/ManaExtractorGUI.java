@@ -21,7 +21,6 @@ public class ManaExtractorGUI extends Screen {
 
     @Override
     protected void init(){
-
         super.init();
     }
 
