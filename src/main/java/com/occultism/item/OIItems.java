@@ -39,6 +39,8 @@ public class OIItems {
     public static final RegistryObject<Item> ingottin = ITEMS.register("ingottin", () -> new Item(defaultBuilder()));
     //功能方块
     public static final RegistryObject<Item> mana_extractor = ITEMS.register("mana_extractor", () -> new BlockItem(OIBlocks.mana_extractor.get(), defaultBuilder()));
+    //心智表
+    public static final RegistryObject<Item> mind_table = ITEMS.register("mind_table", () -> new Item(defaultBuilder()));
 
     //标签页
     public static ItemGroup creativeTab = new ItemGroup(Occultism.ID) {

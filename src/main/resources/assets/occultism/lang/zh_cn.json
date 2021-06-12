@@ -15,5 +15,6 @@
   "block.occultism.oremithril": "秘银矿",
   "block.occultism.oreleadzinc": "铅锌矿",
   "block.occultism.orebauxite": "铝土矿",
-  "block.occultism.oretinstone": "锡石矿"
+  "block.occultism.oretinstone": "锡石矿",
+  "fluid.occultism.mana_fluid": "液态魔力"
 }
