@@ -1,6 +1,6 @@
 package com.occultism.block;
 
-import com.occultism.block.TileEntity.ManaExtractorTileEntity;
+import com.occultism.TileEntity.ManaExtractorTileEntity;
 import com.occultism.gui.OpenGUI;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

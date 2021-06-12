@@ -1,4 +1,4 @@
-package com.occultism.block.TileEntity;
+package com.occultism.TileEntity;
 
 import com.occultism.item.OIItems;
 import net.minecraft.block.BlockState;
@@ -39,7 +39,7 @@ public class ManaExtractorTileEntity extends TileEntity implements ITickableTile
         }
     };
 
-    private FluidHandlerItemStack fluidHandler = new FluidHandlerItemStack(OIItems.mana_bucket.get().getDefaultInstance(), 1){
+    private FluidHandlerItemStack fluidHandler = new FluidHandlerItemStack(OIItems.mana_bucket.get().getDefaultInstance(), 1) {
         @Override
         public boolean isFluidValid(int tank, @Nonnull FluidStack stack) {
             tank = mana;

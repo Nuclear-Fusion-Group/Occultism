@@ -1,7 +1,7 @@
 package com.occultism;
 
 import com.occultism.block.OIBlocks;
-import com.occultism.block.TileEntity.TileEntityTypeRegister;
+import com.occultism.TileEntity.TileEntityTypeRegister;
 import com.occultism.fluid.FluidRegister;
 import com.occultism.item.OIItems;
 import com.occultism.network.OINetwork;

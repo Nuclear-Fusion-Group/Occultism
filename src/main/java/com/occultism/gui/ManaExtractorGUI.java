@@ -21,11 +21,15 @@ public class ManaExtractorGUI extends Screen {
 
     @Override
     protected void init(){
+        this.minecraft.keyboardHandler.setSendRepeatsToGui(true);
         super.init();
     }
 
     @Override
     public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
+        this.renderBackground(matrixStack);
+        this.minecraft.getTextureManager().bind(GUI);
+        this.blit(matrixStack,this.width/2-150,10,0,0,300,200,1,1);
         super.render(matrixStack, mouseX, mouseY, partialTicks);
     }
 }

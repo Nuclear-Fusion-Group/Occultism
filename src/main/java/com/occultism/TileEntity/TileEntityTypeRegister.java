@@ -1,4 +1,4 @@
-package com.occultism.block.TileEntity;
+package com.occultism.TileEntity;
 
 import com.occultism.Occultism;
 import com.occultism.block.OIBlocks;
