@@ -16,7 +16,6 @@ public class TestCommand implements Command<CommandSource> {
     public static TestCommand instance = new TestCommand();
     private ItemStack item;
 
-    //warn：该指令只在调试环境下有效
     @Override
     public int run(CommandContext<CommandSource> context) {
 
