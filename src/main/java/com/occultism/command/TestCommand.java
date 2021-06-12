@@ -2,6 +2,7 @@ package com.occultism.command;
 
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.context.CommandContext;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.command.CommandSource;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -10,24 +11,25 @@ import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.Iterator;
 import java.util.Set;
-import java.util.UUID;
 
 public class TestCommand implements Command<CommandSource> {
     public static TestCommand instance = new TestCommand();
     private ItemStack item;
-    private Set strings;
-    private CompoundNBT nbt;
-    private Iterator iterator;
-
-    private String key;
 
     //warn：该指令只在调试环境下有效
     @Override
     public int run(CommandContext<CommandSource> context) {
-        item = context.getSource().getLevel().getPlayerByUUID(UUID.fromString("380df991-f603-344c-a090-369bad2a924a")).getItemInHand(Hand.MAIN_HAND);
-        nbt = item.getOrCreateTag();
-        strings = nbt.getAllKeys();
-        iterator = strings.iterator();
+
+        try {
+            item = context.getSource().getPlayerOrException().getItemInHand(Hand.MAIN_HAND);
+        } catch (CommandSyntaxException e) {
+            e.printStackTrace();
+        }
+
+        CompoundNBT nbt = item.getOrCreateTag();
+        Set<String> strings = nbt.getAllKeys();
+        Iterator<String> iterator = strings.iterator();
+        String key;
 
         context.getSource().sendSuccess(new TranslationTextComponent("物品id:" + item.getDescriptionId()), false);
         context.getSource().sendSuccess(new TranslationTextComponent("物品tags内容:" + item.getItem().getTags()), false);
@@ -35,7 +37,7 @@ public class TestCommand implements Command<CommandSource> {
 
         while (true) {
             if (iterator.hasNext()) {
-                key = iterator.next().toString();
+                key = iterator.next();
                 context.getSource().sendSuccess(new TranslationTextComponent(key + ":" + nbt.get(key)), false);
             }else {
                 break;
