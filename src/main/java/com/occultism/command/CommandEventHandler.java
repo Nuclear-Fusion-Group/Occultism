@@ -21,6 +21,5 @@ public class CommandEventHandler {
                                 .executes(TestCommand.instance)
                 )
         );
-        dispatcher.register(Commands.literal("bs").redirect(cmd));
     }
 }

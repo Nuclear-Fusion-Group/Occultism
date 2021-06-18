@@ -94,16 +94,15 @@ public abstract class BaseBlockLootTables extends BlockLootTables {
             if (block instanceof IHasTileEntity) {
                 tile = ((IHasTileEntity) block).getTileType().create();
             }
-            if (!(tile instanceof IItemHandler) || ((IItemHandler) tile).getSlots() > 0) {
-                nbtBuilder.copy(NBTConstants.ITEMS, NBTConstants.OI_DATA + "." + NBTConstants.ITEMS);
-                hasData = true;
-            }
-            if (!(tile instanceof IFluidHandlerItem)) {
-                nbtBuilder.copy(NBTConstants.MANA, NBTConstants.OI_DATA + "." + NBTConstants.MANA);
-                hasData = true;
-            }
-            if (tile == null) {
-                hasData = false;
+            if (tile != null) {
+                if (!(tile instanceof IItemHandler) || ((IItemHandler) tile).getSlots() > 0) {
+                    nbtBuilder.copy(NBTConstants.ITEMS, NBTConstants.OI_DATA + "." + NBTConstants.ITEMS);
+                    hasData = true;
+                }
+                if (!(tile instanceof IFluidHandlerItem)) {
+                    nbtBuilder.copy(NBTConstants.MANA, NBTConstants.OI_DATA + "." + NBTConstants.MANA);
+                    hasData = true;
+                }
             }
             //判断是否有数据 如果没有就生成默认战利品表
             if (!hasData) {
