@@ -16,8 +16,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class OIBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Occultism.ID);
 
-    public static final RegistryObject<Block> block_1 = BLOCKS.register("block_1", () -> new Block(defaultBuilder(Material.AIR)));
-
+    public static final RegistryObject<Block> block_1 = BLOCKS.register("block_1", () -> new Block(defaultBuilder()));
     public static final RegistryObject<Block> mana_extractor = BLOCKS.register("mana_extractor", ManaExtractor::new);
     /**
      * ¿óÎï
@@ -31,6 +30,7 @@ public class OIBlocks {
     public static final RegistryObject<Block> oreleadzinc = BLOCKS.register("oreleadzinc", () -> new Block(defaultBuilder().harvestLevel(3)));
     public static final RegistryObject<Block> orebauxite = BLOCKS.register("orebauxite", () -> new Block(defaultBuilder().harvestLevel(3)));
     public static final RegistryObject<Block> oretinstone = BLOCKS.register("oretinstone", () -> new Block(defaultBuilder().harvestLevel(2)));
+    public static final RegistryObject<Block> crystal_stone = BLOCKS.register("crystal_stone", () -> new Block(defaultBuilder().harvestLevel(3)));
     //Á÷Ìå
     public static final RegistryObject<FlowingFluidBlock> manarubikcube = BLOCKS.register("mana_fluid", () ->
             new FlowingFluidBlock(FluidRegister.mana_fluid,

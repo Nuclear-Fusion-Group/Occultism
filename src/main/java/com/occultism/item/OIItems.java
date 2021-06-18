@@ -31,12 +31,23 @@ public class OIItems {
     public static final RegistryObject<Item> oreleadzinc = ITEMS.register("oreleadzinc", () -> new BlockItem(OIBlocks.oreleadzinc.get(), defaultBuilder()));
     public static final RegistryObject<Item> orebauxite = ITEMS.register("orebauxite", () -> new BlockItem(OIBlocks.orebauxite.get(), defaultBuilder()));
     public static final RegistryObject<Item> oretinstone = ITEMS.register("oretinstone", () -> new BlockItem(OIBlocks.oretinstone.get(), defaultBuilder()));
+    public static final RegistryObject<Item> crystal_stone = ITEMS.register("crystal_stone", () -> new BlockItem(OIBlocks.crystal_stone.get(), defaultBuilder()));
     //矿物锭
     public static final RegistryObject<Item> ingotcopper = ITEMS.register("ingotcopper", () -> new Item(defaultBuilder()));
     public static final RegistryObject<Item> ingotsilver = ITEMS.register("ingotsilver", () -> new Item(defaultBuilder()));
     public static final RegistryObject<Item> ingotlead = ITEMS.register("ingotlead", () -> new Item(defaultBuilder()));
     public static final RegistryObject<Item> ingotaluminium = ITEMS.register("ingotaluminium", () -> new Item(defaultBuilder()));
     public static final RegistryObject<Item> ingottin = ITEMS.register("ingottin", () -> new Item(defaultBuilder()));
+    //九色水晶
+    public static final RegistryObject<Item> crystal = ITEMS.register("crystal", () -> new Item(defaultBuilder()));
+    public static final RegistryObject<Item> crystal_1 = ITEMS.register("crystal_1", () -> new Item(defaultBuilder()));
+    public static final RegistryObject<Item> crystal_2 = ITEMS.register("crystal_2", () -> new Item(defaultBuilder()));
+    public static final RegistryObject<Item> crystal_3 = ITEMS.register("crystal_3", () -> new Item(defaultBuilder()));
+    public static final RegistryObject<Item> crystal_4 = ITEMS.register("crystal_4", () -> new Item(defaultBuilder()));
+    public static final RegistryObject<Item> crystal_5 = ITEMS.register("crystal_5", () -> new Item(defaultBuilder()));
+    public static final RegistryObject<Item> crystal_6 = ITEMS.register("crystal_6", () -> new Item(defaultBuilder()));
+    public static final RegistryObject<Item> crystal_7 = ITEMS.register("crystal_7", () -> new Item(defaultBuilder()));
+    public static final RegistryObject<Item> crystal_8 = ITEMS.register("crystal_8", () -> new Item(defaultBuilder()));
     //功能方块
     public static final RegistryObject<Item> mana_extractor = ITEMS.register("mana_extractor", () -> new BlockItem(OIBlocks.mana_extractor.get(), defaultBuilder()));
     //心智表
