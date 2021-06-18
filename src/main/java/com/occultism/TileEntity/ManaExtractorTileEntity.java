@@ -1,5 +1,6 @@
 package com.occultism.TileEntity;
 
+import com.occultism.api.NBTConstants;
 import com.occultism.item.OIItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
@@ -22,7 +23,7 @@ public class ManaExtractorTileEntity extends TileEntity implements ITickableTile
 
     private int mana = 0;
     private int progress;
-    private int totalProgress = 100;
+    private final int totalProgress = 100;
 
     private ItemStackHandler inputHandler = new ItemStackHandler(1) {
         @Override
@@ -59,20 +60,21 @@ public class ManaExtractorTileEntity extends TileEntity implements ITickableTile
     @Override
     public void load(BlockState state, CompoundNBT nbt) {
         super.load(state, nbt);
-        this.mana = nbt.getInt("mana");
+        this.mana = nbt.getInt(NBTConstants.MANA);
 
-        inputHandlerQuote.ifPresent(handler -> handler.deserializeNBT(nbt.getCompound("input")));
-        outputHandlerQuote.ifPresent(handler -> handler.deserializeNBT(nbt.getCompound("output")));
+        inputHandlerQuote.ifPresent(handler -> handler.deserializeNBT(nbt.getCompound(NBTConstants.INPUT)));
+        outputHandlerQuote.ifPresent(handler -> handler.deserializeNBT(nbt.getCompound(NBTConstants.OUTPUT)));
     }
 
     //±£´æÊý¾Ý
     @Override
     public CompoundNBT save(CompoundNBT nbt) {
-        inputHandlerQuote.ifPresent(itemStackHandler -> nbt.put("input", itemStackHandler.serializeNBT()));
-        inputHandlerQuote.ifPresent(itemStackHandler -> nbt.put("output", itemStackHandler.serializeNBT()));
+        super.save(nbt);
+        inputHandlerQuote.ifPresent(itemStackHandler -> nbt.put(NBTConstants.INPUT, itemStackHandler.serializeNBT()));
+        inputHandlerQuote.ifPresent(itemStackHandler -> nbt.put(NBTConstants.OUTPUT, itemStackHandler.serializeNBT()));
 
-        nbt.putInt("mana", mana);
-        return super.save(nbt);
+        nbt.putInt(NBTConstants.MANA, mana);
+        return nbt;
     }
 
     @Override
