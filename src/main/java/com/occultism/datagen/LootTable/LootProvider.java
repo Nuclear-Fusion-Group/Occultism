@@ -1,9 +1,9 @@
 package com.occultism.datagen.LootTable;
 
 import com.occultism.Occultism;
+import com.occultism.datagen.LootTable.Block.BaseBlockLootTables;
+import com.occultism.datagen.LootTable.Block.BlockLootTable;
 import net.minecraft.data.DataGenerator;
-
-import javax.annotation.Nonnull;
 
 public class LootProvider extends BaseLootProvider {
     public LootProvider(DataGenerator gen) {
@@ -15,9 +15,4 @@ public class LootProvider extends BaseLootProvider {
         return new BlockLootTable();
     }
 
-    @Nonnull
-    @Override
-    protected BaseEntityLootTables getEntityLootTable() {
-        return new EntityLootTables();
-    }
 }

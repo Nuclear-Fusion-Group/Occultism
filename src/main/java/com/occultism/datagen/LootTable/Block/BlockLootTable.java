@@ -1,4 +1,4 @@
-package com.occultism.datagen.LootTable;
+package com.occultism.datagen.LootTable.Block;
 
 import com.occultism.block.OIBlocks;
 import net.minecraft.block.Block;
@@ -36,7 +36,7 @@ public class BlockLootTable extends BaseBlockLootTables {
 
     @Override
     protected void addTables() {
-        skip(OIBlocks.flower.get(),OIBlocks.manarubikcube.get().getBlock());
+        skip(OIBlocks.manarubikcube.get().getBlock());
         dropSelfWithContents(getBlocks());
     }
 }

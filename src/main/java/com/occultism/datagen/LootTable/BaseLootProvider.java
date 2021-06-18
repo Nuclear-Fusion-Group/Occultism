@@ -2,6 +2,7 @@ package com.occultism.datagen.LootTable;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
+import com.occultism.datagen.LootTable.Block.BaseBlockLootTables;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.LootTableProvider;
 import net.minecraft.loot.LootParameterSet;
@@ -35,11 +36,9 @@ public abstract class BaseLootProvider extends LootTableProvider {
         return null;
     }
 
-    @Nullable
-    protected BaseEntityLootTables getEntityLootTable() {
-        return null;
-    }
 
+
+    @Nonnull
     @Override
     protected List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootParameterSet>> getTables() {
         ImmutableList.Builder<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootParameterSet>> builder = new ImmutableList.Builder<>();

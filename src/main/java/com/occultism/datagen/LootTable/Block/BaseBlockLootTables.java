@@ -1,4 +1,4 @@
-package com.occultism.datagen.LootTable;
+package com.occultism.datagen.LootTable.Block;
 
 import com.occultism.api.IHasTileEntity;
 import com.occultism.api.NBTConstants;
