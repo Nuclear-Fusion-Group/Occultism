@@ -11,9 +11,12 @@ import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 public class DataGenEvent {
     @SubscribeEvent
     public static void dataGen(GatherDataEvent event) {
-        if (event.includeClient())
-        if (event.includeServer())
+        if (event.includeClient()) {
+
+        }
+        if (event.includeServer()) {
             event.getGenerator().addProvider(new Item_1(event.getGenerator()));
             event.getGenerator().addProvider(new LootProvider(event.getGenerator()));
+        }
     }
 }
