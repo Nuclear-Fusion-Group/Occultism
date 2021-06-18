@@ -10,10 +10,10 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.Iterator;
-import java.util.Set;
 
 public class TestCommand implements Command<CommandSource> {
     public static TestCommand instance = new TestCommand();
+
     private ItemStack item;
 
     @Override
@@ -26,8 +26,7 @@ public class TestCommand implements Command<CommandSource> {
         }
 
         CompoundNBT nbt = item.getOrCreateTag();
-        Set<String> strings = nbt.getAllKeys();
-        Iterator<String> iterator = strings.iterator();
+        Iterator<String> iterator = nbt.getAllKeys().iterator();
         String key;
 
         context.getSource().sendSuccess(new TranslationTextComponent("ŒÔ∆∑id:" + item.getDescriptionId()), false);
@@ -38,7 +37,7 @@ public class TestCommand implements Command<CommandSource> {
             if (iterator.hasNext()) {
                 key = iterator.next();
                 context.getSource().sendSuccess(new TranslationTextComponent(key + ":" + nbt.get(key)), false);
-            }else {
+            } else {
                 break;
             }
         }
