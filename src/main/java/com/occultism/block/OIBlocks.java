@@ -1,13 +1,13 @@
 package com.occultism.block;
 
 import com.occultism.Occultism;
+import com.occultism.block.Flower.Flowers;
 import com.occultism.fluid.FluidRegister;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
-import net.minecraft.block.FlowerBlock;
 import net.minecraft.block.FlowingFluidBlock;
 import net.minecraft.block.material.Material;
-import net.minecraft.potion.Effects;
+import net.minecraft.block.material.MaterialColor;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -39,10 +39,15 @@ public class OIBlocks {
                             .strength(100.0F)
                             .noDrops()));
 
-    /**
-     * DIG_SPEED 蓝色
-     */
-    public static final RegistryObject<Block> flower = BLOCKS.register("flower", () -> new FlowerBlock(Effects.NIGHT_VISION, 4, defaultBuilder()));
+    //花
+    public static final RegistryObject<Block> moon_flower = BLOCKS.register("moon_flower", () -> new Flowers(Material.PLANT, MaterialColor.PLANT, Material.GRASS, Material.DIRT));
+    public static final RegistryObject<Block> chamomile = BLOCKS.register("chamomile", () -> new Flowers(Material.PLANT, MaterialColor.PLANT, Material.GRASS, Material.DIRT));
+    public static final RegistryObject<Block> marigold = BLOCKS.register("marigold", () -> new Flowers(Material.PLANT, MaterialColor.PLANT, Material.GRASS, Material.DIRT));
+    public static final RegistryObject<Block> manjushahua = BLOCKS.register("manjushahua", () -> new Flowers(Material.PLANT, MaterialColor.PLANT, Material.GRASS, Material.DIRT));
+    public static final RegistryObject<Block> mandela_grass = BLOCKS.register("mandela_grass", () -> new Flowers(Material.PLANT, MaterialColor.PLANT, Material.GRASS, Material.DIRT));
+    public static final RegistryObject<Block> cicuta = BLOCKS.register("cicuta", () -> new Flowers(Material.PLANT, MaterialColor.PLANT, Material.GRASS, Material.DIRT));
+    public static final RegistryObject<Block> datura = BLOCKS.register("datura", () -> new Flowers(Material.PLANT, MaterialColor.PLANT, Material.GRASS, Material.DIRT));
+    public static final RegistryObject<Block> sage = BLOCKS.register("sage", () -> new Flowers(Material.PLANT, MaterialColor.PLANT, Material.GRASS, Material.DIRT));
 
     /**
      * 方块构造方法

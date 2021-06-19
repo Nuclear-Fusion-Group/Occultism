@@ -52,6 +52,15 @@ public class OIItems {
     public static final RegistryObject<Item> mana_extractor = ITEMS.register("mana_extractor", () -> new BlockItem(OIBlocks.mana_extractor.get(), defaultBuilder()));
     //心智表
     public static final RegistryObject<Item> mind_table = ITEMS.register("mind_table", () -> new Item(defaultBuilder()));
+    //花
+    public static final RegistryObject<Item> moon_flower = ITEMS.register("moon_flower", () -> new BlockItem(OIBlocks.moon_flower.get(), defaultBuilder()));
+    public static final RegistryObject<Item> chamomile = ITEMS.register("chamomile", () -> new BlockItem(OIBlocks.chamomile.get(), defaultBuilder()));
+    public static final RegistryObject<Item> marigold = ITEMS.register("marigold", () -> new BlockItem(OIBlocks.marigold.get(), defaultBuilder()));
+    public static final RegistryObject<Item> manjushahua = ITEMS.register("manjushahua", () -> new BlockItem(OIBlocks.manjushahua.get(), defaultBuilder()));
+    public static final RegistryObject<Item> mandela_grass = ITEMS.register("mandela_grass", () -> new BlockItem(OIBlocks.mandela_grass.get(), defaultBuilder()));
+    public static final RegistryObject<Item> cicuta = ITEMS.register("cicuta", () -> new BlockItem(OIBlocks.cicuta.get(), defaultBuilder()));
+    public static final RegistryObject<Item> datura = ITEMS.register("datura", () -> new BlockItem(OIBlocks.datura.get(), defaultBuilder()));
+    public static final RegistryObject<Item> sage = ITEMS.register("sage", () -> new BlockItem(OIBlocks.sage.get(), defaultBuilder()));
 
     //标签页
     public static ItemGroup creativeTab = new ItemGroup(Occultism.ID) {
