@@ -17,6 +17,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.DistExecutor;
 
+import javax.annotation.Nonnull;
+
 public class ManaExtractor extends Block implements IHasTileEntity {
     public ManaExtractor() {
         super(OIBlocks.defaultBuilder());
@@ -38,6 +40,7 @@ public class ManaExtractor extends Block implements IHasTileEntity {
     }
 
     //ÓÒ»÷·½¿éÊÂ¼þ
+    @Nonnull
     @Override
     public ActionResultType use(BlockState state, World world, BlockPos blockPos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult blockRayTraceResult) {
         if (world.isClientSide) {

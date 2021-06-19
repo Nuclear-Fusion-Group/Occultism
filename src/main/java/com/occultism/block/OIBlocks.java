@@ -1,10 +1,14 @@
 package com.occultism.block;
 
 import com.occultism.Occultism;
+import com.occultism.block.Crop.Mandela;
+import com.occultism.block.Crop.Noema;
+import com.occultism.block.Crop.StarFantasyFruit;
 import com.occultism.block.Flower.Flowers;
 import com.occultism.fluid.FluidRegister;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.CropsBlock;
 import net.minecraft.block.FlowingFluidBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -48,6 +52,10 @@ public class OIBlocks {
     public static final RegistryObject<Block> cicuta = BLOCKS.register("cicuta", () -> new Flowers(Material.PLANT, MaterialColor.PLANT, Material.GRASS, Material.DIRT));
     public static final RegistryObject<Block> datura = BLOCKS.register("datura", () -> new Flowers(Material.PLANT, MaterialColor.PLANT, Material.GRASS, Material.DIRT));
     public static final RegistryObject<Block> sage = BLOCKS.register("sage", () -> new Flowers(Material.PLANT, MaterialColor.PLANT, Material.GRASS, Material.DIRT));
+    //作物
+    public static final RegistryObject<CropsBlock> mandela = BLOCKS.register("mandela", Mandela::new);
+    public static final RegistryObject<CropsBlock> noema = BLOCKS.register("noema", Noema::new);
+    public static final RegistryObject<CropsBlock> star_fantasy_fruit = BLOCKS.register("star_fantasy_fruit", StarFantasyFruit::new);
 
     /**
      * 方块构造方法

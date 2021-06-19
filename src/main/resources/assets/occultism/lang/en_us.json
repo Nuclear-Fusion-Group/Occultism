@@ -28,5 +28,16 @@
   "block.occultism.orebauxite": "OreBauxite",
   "block.occultism.oretinstone": "OreTinStone",
   "block.occultism.crystal_stone": "Crystal_Stone",
-  "fluid.occultism.mana_fluid": "Mana"
+  "fluid.occultism.mana_fluid": "Mana",
+  "block.occultism.moon_flower": "Moon_Flower",
+  "block.occultism.chamomile": "Chamomile",
+  "block.occultism.marigold": "Marigold",
+  "block.occultism.manjushahua": "Manjushahua",
+  "block.occultism.mandela_grass": "Mandela_Grass",
+  "block.occultism.cicuta": "Cicuta",
+  "block.occultism.datura": "Datura",
+  "block.occultism.sage": "Sage",
+  "block.occultism.mandela": "Mandela_Seen",
+  "block.occultism.noema": "Noema_Seen",
+  "block.occultism.star_fantasy_fruit": "Star_Fantasy_Fruit_Seen"
 }

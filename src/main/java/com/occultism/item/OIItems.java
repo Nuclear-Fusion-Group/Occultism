@@ -2,6 +2,8 @@ package com.occultism.item;
 
 import com.occultism.Occultism;
 import com.occultism.block.OIBlocks;
+import com.occultism.item.Bucket.Bucket;
+import com.occultism.item.Bucket.Mana_bucket;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -61,6 +63,10 @@ public class OIItems {
     public static final RegistryObject<Item> cicuta = ITEMS.register("cicuta", () -> new BlockItem(OIBlocks.cicuta.get(), defaultBuilder()));
     public static final RegistryObject<Item> datura = ITEMS.register("datura", () -> new BlockItem(OIBlocks.datura.get(), defaultBuilder()));
     public static final RegistryObject<Item> sage = ITEMS.register("sage", () -> new BlockItem(OIBlocks.sage.get(), defaultBuilder()));
+    //作物种子
+    public static final RegistryObject<Item> mandela_seen = ITEMS.register("mandela_seen", () -> new BlockItem(OIBlocks.mandela.get(), defaultBuilder()));
+    public static final RegistryObject<Item> noema_seen = ITEMS.register("noema_seen", () -> new BlockItem(OIBlocks.noema.get(), defaultBuilder()));
+    public static final RegistryObject<Item> star_fantasy_fruit_seen = ITEMS.register("star_fantasy_fruit_seen", () -> new BlockItem(OIBlocks.star_fantasy_fruit.get(), defaultBuilder()));
 
     //标签页
     public static ItemGroup creativeTab = new ItemGroup(Occultism.ID) {

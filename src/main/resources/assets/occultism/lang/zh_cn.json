@@ -28,5 +28,16 @@
   "block.occultism.orebauxite": "铝土矿",
   "block.occultism.oretinstone": "锡石矿",
   "block.occultism.crystal_stone": "水晶石",
-  "fluid.occultism.mana_fluid": "液态魔力"
+  "fluid.occultism.mana_fluid": "液态魔力",
+  "block.occultism.moon_flower": "月亮花",
+  "block.occultism.chamomile": "洋甘菊",
+  "block.occultism.marigold": "金盏花",
+  "block.occultism.manjushahua": "曼珠沙华",
+  "block.occultism.mandela_grass": "曼德拉草",
+  "block.occultism.cicuta": "毒堇",
+  "block.occultism.datura": "曼陀罗",
+  "block.occultism.sage": "鼠尾草",
+  "block.occultism.mandela": "曼德拉种子",
+  "block.occultism.noema": "心智之种",
+  "block.occultism.star_fantasy_fruit": "星幻果实之种"
 }
