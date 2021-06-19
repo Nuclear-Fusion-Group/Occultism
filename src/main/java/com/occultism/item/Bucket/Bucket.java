@@ -1,6 +1,7 @@
-package com.occultism.item;
+package com.occultism.item.Bucket;
 
 import com.occultism.fluid.FluidRegister;
+import com.occultism.item.OIItems;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;

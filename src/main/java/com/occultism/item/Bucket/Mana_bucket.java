@@ -1,7 +1,8 @@
-package com.occultism.item;
+package com.occultism.item.Bucket;
 
 import com.occultism.block.OIBlocks;
 import com.occultism.fluid.FluidRegister;
+import com.occultism.item.OIItems;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
