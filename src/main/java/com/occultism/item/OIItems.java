@@ -53,7 +53,7 @@ public class OIItems {
     //功能方块
     public static final RegistryObject<Item> mana_extractor = ITEMS.register("mana_extractor", () -> new BlockItem(OIBlocks.mana_extractor.get(), defaultBuilder()));
     //心智表
-    public static final RegistryObject<Item> mind_table = ITEMS.register("mind_table", () -> new Item(defaultBuilder()));
+    public static final RegistryObject<Item> mind_table = ITEMS.register("mind_table", Mind_table::new);
     //花
     public static final RegistryObject<Item> moon_flower = ITEMS.register("moon_flower", () -> new BlockItem(OIBlocks.moon_flower.get(), defaultBuilder()));
     public static final RegistryObject<Item> chamomile = ITEMS.register("chamomile", () -> new BlockItem(OIBlocks.chamomile.get(), defaultBuilder()));

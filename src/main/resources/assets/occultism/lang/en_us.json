@@ -39,5 +39,6 @@
   "block.occultism.sage": "Sage",
   "block.occultism.mandela": "Mandela_Seen",
   "block.occultism.noema": "Noema_Seen",
-  "block.occultism.star_fantasy_fruit": "Star_Fantasy_Fruit_Seen"
+  "block.occultism.star_fantasy_fruit": "Star_Fantasy_Fruit_Seen",
+  "entity.occultism.historical_cover": "Historical_Cover"
 }
