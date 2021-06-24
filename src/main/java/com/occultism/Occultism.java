@@ -6,6 +6,7 @@ import com.occultism.entity.EntityTypeRegistry;
 import com.occultism.fluid.FluidRegister;
 import com.occultism.item.OIItems;
 import com.occultism.network.OINetwork;
+import com.occultism.world.AddFlower;
 import com.occultism.world.addOre;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -142,6 +143,8 @@ public class Occultism {
                 .add(() -> addOre.ORE_ALUMINIUM_CONFIG);
         biome.getGeneration().getFeatures(GenerationStage.Decoration.UNDERGROUND_ORES)
                 .add(() -> addOre.ORE_TIN_CONFIG);
+        biome.getGeneration().getFeatures(GenerationStage.Decoration.TOP_LAYER_MODIFICATION)
+                .add(()-> AddFlower.FLOWER);
     }
 
     // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD

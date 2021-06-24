@@ -7,6 +7,8 @@ import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
 
+import javax.annotation.Nonnull;
+
 public class HistoricalCoverRender extends MobRenderer<HistoricalCover,HistoricalCoverModel> {
 
     //第三个参数是影子大小
@@ -18,6 +20,7 @@ public class HistoricalCoverRender extends MobRenderer<HistoricalCover,Historica
         super(renderManagerIn, entityModelIn, shadowSizeIn);
     }
 
+    @Nonnull
     @Override
     public ResourceLocation getTextureLocation(HistoricalCover p_110775_1_) {
         return new ResourceLocation(Occultism.ID,"textures/entity/historical_cover.png");

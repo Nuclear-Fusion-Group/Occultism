@@ -23,7 +23,7 @@ public class HistoricalCoverModel extends EntityModel<HistoricalCover> {
         body = new ModelRenderer(this);
         body.setPos(8.0F, 24.0F, -8.0F);
         //UVŒª÷√
-        body.setTexSize(0, 0)
+        body.setTexSize(16, 16)
                 .addBox(-16.0F, -16.0F, 0.0F, 16.0F, 10.0F, 16.0F, 0.0F, false);
     }
 

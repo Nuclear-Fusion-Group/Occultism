@@ -69,12 +69,11 @@ public class ManaExtractorTileEntity extends TileEntity implements ITickableTile
     //保存数据
     @Override
     public CompoundNBT save(CompoundNBT nbt) {
-        super.save(nbt);
         inputHandlerQuote.ifPresent(itemStackHandler -> nbt.put(NBTConstants.INPUT, itemStackHandler.serializeNBT()));
         inputHandlerQuote.ifPresent(itemStackHandler -> nbt.put(NBTConstants.OUTPUT, itemStackHandler.serializeNBT()));
 
         nbt.putInt(NBTConstants.MANA, mana);
-        return nbt;
+        return super.save(nbt);
     }
 
     @Override
@@ -88,8 +87,9 @@ public class ManaExtractorTileEntity extends TileEntity implements ITickableTile
 
     //魔力
     private boolean manaCheck() {
-        if (mana <= 5000)
+        if (mana <= 5000) {
             mana++;
+        }
         return true;
     }
 
