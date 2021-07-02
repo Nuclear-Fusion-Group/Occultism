@@ -1,8 +1,8 @@
 package com.occultism.item.Bucket;
 
-import com.occultism.block.OIBlocks;
+import com.occultism.block.Blocks;
 import com.occultism.fluid.FluidRegister;
-import com.occultism.item.OIItems;
+import com.occultism.item.Items;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -20,16 +20,16 @@ import javax.annotation.Nonnull;
 
 public class Mana_bucket extends BucketItem {
     public Mana_bucket() {
-        super(() -> FluidRegister.mana_fluid.get(), OIItems.defaultBuilder().stacksTo(1));
+        super(() -> FluidRegister.mana_fluid.get(), Items.defaultBuilder().maxStackSize(1));
     }
 
     @Nonnull
     @Override
-    public ActionResult<ItemStack> use(@Nonnull World world, @Nonnull PlayerEntity playerEntity, @Nonnull Hand hand) {
+    public ActionResult<ItemStack> onItemRightClick(@Nonnull World world, @Nonnull PlayerEntity playerEntity, @Nonnull Hand hand) {
         //获取手中物品堆
-        ItemStack itemStack = playerEntity.getItemInHand(hand);
+        ItemStack itemStack = playerEntity.getHeldItem(hand);
         //准星对准的方块
-        RayTraceResult rayTraceResult = getPlayerPOVHitResult(world, playerEntity, RayTraceContext.FluidMode.SOURCE_ONLY);
+        RayTraceResult rayTraceResult = rayTrace(world, playerEntity, RayTraceContext.FluidMode.SOURCE_ONLY);
         //装起来后的结果
         ActionResult<ItemStack> result = ForgeEventFactory.onBucketUse(playerEntity, world, itemStack, rayTraceResult);
         if (result != null) {
@@ -37,37 +37,37 @@ public class Mana_bucket extends BucketItem {
         }
         //没有指向方块
         if (rayTraceResult.getType() == RayTraceResult.Type.MISS) {
-            return ActionResult.pass(itemStack);
+            return ActionResult.resultPass(itemStack);
             //并不指向方块
         } else {
             //指向的方块
             BlockRayTraceResult blockRayTraceResult = (BlockRayTraceResult) rayTraceResult;
             //获取方块位置
-            BlockPos blockPos = blockRayTraceResult.getBlockPos();
+            BlockPos blockPos = blockRayTraceResult.getPos();
             //获取方块方向
-            Direction direction = blockRayTraceResult.getDirection();
+            Direction direction = blockRayTraceResult.getFace();
             //对应方向的方块坐标
-            BlockPos blockPos1 = blockPos.relative(direction);
+            BlockPos blockPos1 = blockPos.offset(direction);
             //方块互动和物品互动同时成立时
-            if (world.mayInteract(playerEntity, blockPos) && playerEntity.mayUseItemAt(blockPos1, direction, itemStack)) {
+            if (world.isBlockModifiable(playerEntity, blockPos) && playerEntity.canPlayerEdit(blockPos1, direction, itemStack)) {
                 //声音事件
                 SoundEvent soundEvent = FluidRegister.mana_fluid.get().getFluid().getAttributes().getFillSound();
                 if (soundEvent == null)
-                    soundEvent = SoundEvents.BUCKET_FILL;
+                    soundEvent = SoundEvents.ITEM_BUCKET_FILL;
                 //播放声音
                 playerEntity.playSound(soundEvent, 1.0F, 1.0F);
                 //物品堆
-                ItemStack itemStack1 = DrinkHelper.createFilledResult(itemStack, playerEntity, OIItems.bucket.get().getDefaultInstance());
+                ItemStack itemStack1 = DrinkHelper.fill(itemStack, playerEntity, Items.bucket.get().getDefaultInstance());
                 //非客户端
-                if (!world.isClientSide) {
-                    CriteriaTriggers.FILLED_BUCKET.trigger((ServerPlayerEntity) playerEntity, OIItems.bucket.get().getDefaultInstance());
+                if (!world.isRemote) {
+                    CriteriaTriggers.FILLED_BUCKET.trigger((ServerPlayerEntity) playerEntity, Items.bucket.get().getDefaultInstance());
                 }
                 //设置流体并更新
-                world.setBlockAndUpdate(world.getFluidState(blockPos).isEmpty() ? blockPos1 : blockPos, OIBlocks.manarubikcube.get().defaultBlockState());
+                world.setBlockState(world.getFluidState(blockPos).isEmpty() ? blockPos1 : blockPos, Blocks.manarubikcube.get().getDefaultState());
 
-                return ActionResult.sidedSuccess(itemStack1, world.isClientSide());
+                return ActionResult.func_233538_a_(itemStack1, world.isRemote());
             } else {
-                return ActionResult.fail(itemStack);
+                return ActionResult.resultFail(itemStack);
             }
         }
     }

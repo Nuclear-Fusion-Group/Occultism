@@ -14,15 +14,15 @@ public class MobGoal extends MeleeAttackGoal {
 
 
     @Override
-    public void start() {
-        super.start();
+    public void startExecuting() {
+        super.startExecuting();
         this.raiseArmTicks = 0;
     }
 
     @Override
-    public void stop() {
-        super.stop();
-        this.historicalCover.setAggressive(false);
+    public void resetTask() {
+        super.resetTask();
+        this.historicalCover.setAggroed(false);
     }
 
 
@@ -30,10 +30,10 @@ public class MobGoal extends MeleeAttackGoal {
     public void tick() {
         super.tick();
         ++this.raiseArmTicks;
-        if (this.raiseArmTicks >= 5 && this.getTicksUntilNextAttack() < this.getAttackInterval() / 2) {
-            this.historicalCover.setAggressive(true);
+        if (this.raiseArmTicks >= 5 && this.getSwingCooldown() < this.func_234042_k_() / 2) {
+            this.historicalCover.setAggroed(true);
         } else {
-            this.historicalCover.setAggressive(false);
+            this.historicalCover.setAggroed(false);
         }
 
     }

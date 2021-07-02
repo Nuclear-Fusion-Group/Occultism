@@ -24,7 +24,7 @@ public class ExamplePack {
     //  反序列化
 //  数据逐行读取，与toBytes相对称
     public ExamplePack(PacketBuffer buffer) {
-        message = buffer.readUtf(Short.MAX_VALUE);
+        message = buffer.readString(Short.MAX_VALUE);
     }
 
     //  输入要传递的讯息
@@ -35,7 +35,7 @@ public class ExamplePack {
     //  序列化
 //  数据逐行序列化
     public void toBytes(PacketBuffer buf) {
-        buf.writeUtf(this.message);
+        buf.writeString(this.message);
     }
 
     //  代码执行
@@ -44,7 +44,7 @@ public class ExamplePack {
             if (ctx.get().getDirection().getOriginationSide().isClient()) {
                 ServerPlayerEntity player = ctx.get().getSender();
                 if (player != null) {
-                    player.displayClientMessage(new StringTextComponent(message), true);
+                    player.sendStatusMessage(new StringTextComponent(message), true);
                 }
             } else {
                 LOGGER.info(this.message);

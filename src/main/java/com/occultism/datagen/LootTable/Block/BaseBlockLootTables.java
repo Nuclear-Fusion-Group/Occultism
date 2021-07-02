@@ -36,8 +36,8 @@ public abstract class BaseBlockLootTables extends BlockLootTables {
      * @param table
      */
     @Override
-    protected void add(@Nonnull Block block, @Nonnull LootTable.Builder table) {
-        super.add(block, table);
+    protected void registerLootTable(@Nonnull Block block, @Nonnull LootTable.Builder table) {
+        super.registerLootTable(block, table);
         knownBlocks.add(block);
     }
 
@@ -85,7 +85,7 @@ public abstract class BaseBlockLootTables extends BlockLootTables {
                 continue;
             }
             //获取默认nbt构造
-            CopyNbt.Builder nbtBuilder = CopyNbt.copyData(CopyNbt.Source.BLOCK_ENTITY);
+            CopyNbt.Builder nbtBuilder = CopyNbt.builder(CopyNbt.Source.BLOCK_ENTITY);
 
             boolean hasData = false;
             @Nullable
@@ -96,23 +96,24 @@ public abstract class BaseBlockLootTables extends BlockLootTables {
             }
             if (tile != null) {
                 if (!(tile instanceof IItemHandler) || ((IItemHandler) tile).getSlots() > 0) {
-                    nbtBuilder.copy(NBTConstants.ITEMS, NBTConstants.OI_DATA + "." + NBTConstants.ITEMS);
+                    nbtBuilder.replaceOperation(NBTConstants.ITEMS, NBTConstants.OI_DATA + "." + NBTConstants.ITEMS);
                     hasData = true;
                 }
                 if (!(tile instanceof IFluidHandlerItem)) {
-                    nbtBuilder.copy(NBTConstants.MANA, NBTConstants.OI_DATA + "." + NBTConstants.MANA);
+                    nbtBuilder.replaceOperation(NBTConstants.MANA, NBTConstants.OI_DATA + "." + NBTConstants.MANA);
                     hasData = true;
                 }
             }
             //判断是否有数据 如果没有就生成默认战利品表
             if (!hasData) {
-                dropSelf(block);
+                dropping(block);
             } else {
-                add(block, LootTable.lootTable().withPool(applyExplosionCondition(block, LootPool.lootPool()
+                registerLootTable(block, LootTable.builder().addLootPool(withExplosionDecay(block, LootPool.builder()
                         .name("main")
-                        .setRolls(ConstantRange.exactly(1))
-                        .add(ItemLootEntry.lootTableItem(block).apply(nbtBuilder))
-                )));
+                        .rolls(ConstantRange.of(1))
+                        .addEntry(ItemLootEntry.builder(block).acceptFunction(nbtBuilder))
+                        ))
+                );
             }
         }
     }

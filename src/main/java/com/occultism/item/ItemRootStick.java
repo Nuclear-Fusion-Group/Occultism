@@ -1,6 +1,6 @@
 package com.occultism.item;
 
-import com.occultism.network.OINetwork;
+import com.occultism.network.Network;
 
 import com.occultism.network.message_packs.ExamplePack;
 import net.minecraft.entity.player.PlayerEntity;
@@ -22,24 +22,24 @@ import javax.annotation.Nonnull;
  */
 public class ItemRootStick extends Item {
     public ItemRootStick() {
-        super(OIItems.defaultBuilder());
+        super(Items.defaultBuilder());
     }
 
     @Nonnull
     @Override
-    public ActionResult<ItemStack> use(World worldIn, @Nonnull PlayerEntity playerIn,@Nonnull Hand handIn) {
-        if (worldIn.isClientSide) {
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, @Nonnull PlayerEntity playerIn,@Nonnull Hand handIn) {
+        if (worldIn.isRemote) {
 //          向服务器发包
-            OINetwork.INSTANCE.sendToServer(new ExamplePack("From the Client"));
+            Network.INSTANCE.sendToServer(new ExamplePack("From the Client"));
         }
-        if (!worldIn.isClientSide) {
-            OINetwork.INSTANCE.send(
+        if (!worldIn.isRemote) {
+            Network.INSTANCE.send(
 //                  向玩家发包
                     PacketDistributor.PLAYER.with(
                             () -> (ServerPlayerEntity) playerIn
                     ),
                     new ExamplePack("From Server"));
         }
-        return super.use(worldIn, playerIn, handIn);
+        return super.onItemRightClick(worldIn, playerIn, handIn);
     }
 }

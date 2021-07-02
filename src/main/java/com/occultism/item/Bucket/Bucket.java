@@ -1,7 +1,7 @@
 package com.occultism.item.Bucket;
 
 import com.occultism.fluid.FluidRegister;
-import com.occultism.item.OIItems;
+import com.occultism.item.Items;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
@@ -22,17 +22,17 @@ public class Bucket extends BucketItem {
 
     //构造函数
     public Bucket() {
-        super(() -> Fluids.EMPTY, OIItems.defaultBuilder().stacksTo(16));
+        super(() -> Fluids.EMPTY, Items.defaultBuilder().maxStackSize(16));
     }
 
 
     @Nonnull
     @Override
-    public ActionResult<ItemStack> use(@Nonnull World world, @Nonnull PlayerEntity playerEntity, @Nonnull Hand hand) {
+    public ActionResult<ItemStack> onItemRightClick(@Nonnull World world, @Nonnull PlayerEntity playerEntity, @Nonnull Hand hand) {
         //获取手中物品堆
-        ItemStack itemStack = playerEntity.getItemInHand(hand);
+        ItemStack itemStack = playerEntity.getHeldItem(hand);
         //准星对准的方块
-        RayTraceResult rayTraceResult = getPlayerPOVHitResult(world, playerEntity, RayTraceContext.FluidMode.SOURCE_ONLY);
+        RayTraceResult rayTraceResult = rayTrace(world, playerEntity, RayTraceContext.FluidMode.SOURCE_ONLY);
         //装起来后的结果
         ActionResult<ItemStack> result = ForgeEventFactory.onBucketUse(playerEntity, world, itemStack, rayTraceResult);
         if (result != null) {
@@ -40,40 +40,40 @@ public class Bucket extends BucketItem {
         }
         //没有指向方块
         if (rayTraceResult.getType() == RayTraceResult.Type.MISS) {
-            return ActionResult.pass(itemStack);
+            return ActionResult.resultPass(itemStack);
             //并不指向方块
         } else {
             //指向的方块
             BlockRayTraceResult blockRayTraceResult = (BlockRayTraceResult) rayTraceResult;
             //获取方块位置
-            BlockPos blockPos = blockRayTraceResult.getBlockPos();
+            BlockPos blockPos = blockRayTraceResult.getPos();
             //获取方块方向
-            Direction direction = blockRayTraceResult.getDirection();
+            Direction direction = blockRayTraceResult.getFace();
             //对应方向的方块坐标
-            BlockPos blockPos1 = blockPos.relative(direction);
+            BlockPos blockPos1 = blockPos.offset(direction);
             BlockPos blockPos2;
             //方块互动和物品互动同时成立时
-            if (world.mayInteract(playerEntity, blockPos) && playerEntity.mayUseItemAt(blockPos1, direction, itemStack)) {
+            if (world.isBlockModifiable(playerEntity, blockPos) && playerEntity.canPlayerEdit(blockPos1, direction, itemStack)) {
                 FluidState fluidState = world.getFluidState(blockPos1);
                 //声音事件
                 SoundEvent soundEvent = FluidRegister.mana_fluid.get().getFluid().getAttributes().getFillSound();
                 if (soundEvent == null)
-                    soundEvent = SoundEvents.BUCKET_FILL;
+                    soundEvent = SoundEvents.ITEM_BUCKET_FILL;
                 blockPos2 = fluidState.isEmpty() ? blockPos : blockPos1;
 
                 FluidState fluidState1 = world.getFluidState(blockPos2);
 
                 if (fluidState1.isEmpty()) {
-                    return ActionResult.fail(itemStack);
+                    return ActionResult.resultFail(itemStack);
                 }
-                world.setBlockAndUpdate(blockPos2, Blocks.AIR.defaultBlockState());
+                world.setBlockState(blockPos2, Blocks.AIR.getDefaultState());
                 //播放声音
                 playerEntity.playSound(soundEvent, 1.0F, 1.0F);
-                playerEntity.setItemInHand(hand, OIItems.mana_bucket.get().getDefaultInstance());
+                playerEntity.setHeldItem(hand, Items.mana_bucket.get().getDefaultInstance());
             } else {
-                return ActionResult.fail(itemStack);
+                return ActionResult.resultFail(itemStack);
             }
-            return ActionResult.fail(itemStack);
+            return ActionResult.resultFail(itemStack);
         }
     }
 }

@@ -1,6 +1,6 @@
 package com.occultism.gui.hub;
 
-import com.occultism.item.OIItems;
+import com.occultism.item.Items;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.Hand;
 import net.minecraftforge.api.distmarker.Dist;
@@ -16,7 +16,7 @@ public class HudClientEvent  {
         if (event.getType() != RenderGameOverlayEvent.ElementType.ALL) {
             return;
         }
-        if (Minecraft.getInstance().player == null || Minecraft.getInstance().player.getItemInHand(Hand.MAIN_HAND).getItem() != OIItems.mind_table.get()){
+        if (Minecraft.getInstance().player == null || Minecraft.getInstance().player.getHeldItem(Hand.MAIN_HAND).getItem() != Items.mind_table.get()){
             return;
         }
         HUB hub = new HUB(event.getMatrixStack());

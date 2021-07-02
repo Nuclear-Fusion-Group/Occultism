@@ -22,7 +22,7 @@ public class HistoricalCoverRender extends MobRenderer<HistoricalCover,Historica
 
     @Nonnull
     @Override
-    public ResourceLocation getTextureLocation(HistoricalCover p_110775_1_) {
+    public ResourceLocation getEntityTexture(HistoricalCover p_110775_1_) {
         return new ResourceLocation(Occultism.ID,"textures/entity/historical_cover.png");
     }
 

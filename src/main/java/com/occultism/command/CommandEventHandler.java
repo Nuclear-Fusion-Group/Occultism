@@ -17,7 +17,7 @@ public class CommandEventHandler {
         LiteralCommandNode<CommandSource> cmd = dispatcher.register(
                 Commands.literal(Occultism.ID).then(
                         Commands.literal("hand")
-                                .requires((commandSource) -> commandSource.hasPermission(0))
+                                .requires((commandSource) -> commandSource.hasPermissionLevel(0))
                                 .executes(TestCommand.instance)
                 )
         );

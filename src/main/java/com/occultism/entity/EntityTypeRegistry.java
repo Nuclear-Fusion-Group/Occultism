@@ -12,8 +12,8 @@ public class EntityTypeRegistry {
 
     public static final RegistryObject<EntityType<HistoricalCover>> historical_cover =
             ENTITY_TYPES.register("historical_cover",
-                    () -> EntityType.Builder.of(HistoricalCover::new, EntityClassification.MISC)
+                    () -> EntityType.Builder.create(HistoricalCover::new, EntityClassification.MISC)
                             //Åö×²Ïä´óÐ¡
-                            .sized(1, 1)
+                            .size(1, 1)
                             .build("historical_cover"));
 }

@@ -1,7 +1,7 @@
 package com.occultism.world;
 
 import com.occultism.Occultism;
-import com.occultism.block.OIBlocks;
+import com.occultism.block.Blocks;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
@@ -26,48 +26,48 @@ public class addOre {
     @SubscribeEvent
     public static void setup(FMLCommonSetupEvent event) {
         ORE_COPPER_CONFIG = Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, "ore_copper",
-                Feature.ORE.configured(
+                Feature.ORE.withConfiguration(
                         new OreFeatureConfig(
-                                OreFeatureConfig.FillerBlockType.NATURAL_STONE,
-                                OIBlocks.orebrass.get().defaultBlockState(), 8//最多数量
+                                OreFeatureConfig.FillerBlockType.BASE_STONE_NETHER,
+                                Blocks.orebrass.get().getDefaultState(), 8//最多数量
                         )
-                ).range(70).squared().count(20)
+                ).range(70).square().count(20)
         );
 
         ORE_SILVER_CONFIG = Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, "ore_silver",
-                Feature.ORE.configured(
+                Feature.ORE.withConfiguration(
                         new OreFeatureConfig(
-                                OreFeatureConfig.FillerBlockType.NATURAL_STONE,
-                                OIBlocks.oremithril.get().defaultBlockState(), 8
+                                OreFeatureConfig.FillerBlockType.BASE_STONE_NETHER,
+                                Blocks.oremithril.get().getDefaultState(), 8
                         )
-                ).range(8).squared().count(20)
+                ).range(8).square().count(20)
         );
 
         ORE_LEAD_CONFIG = Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, "ore_lead",
-                Feature.ORE.configured(
+                Feature.ORE.withConfiguration(
                         new OreFeatureConfig(
-                                OreFeatureConfig.FillerBlockType.NATURAL_STONE,
-                                OIBlocks.oreleadzinc.get().defaultBlockState(), 8
+                                OreFeatureConfig.FillerBlockType.BASE_STONE_NETHER,
+                                Blocks.oreleadzinc.get().getDefaultState(), 8
                         )
-                ).range(16).squared().count(20)
+                ).range(16).square().count(20)
         );
 
         ORE_ALUMINIUM_CONFIG = Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, "ore_aluminium",
-                Feature.ORE.configured(
+                Feature.ORE.withConfiguration(
                         new OreFeatureConfig(
-                                OreFeatureConfig.FillerBlockType.NATURAL_STONE,
-                                OIBlocks.orebauxite.get().defaultBlockState(), 8
+                                OreFeatureConfig.FillerBlockType.BASE_STONE_NETHER,
+                                Blocks.orebauxite.get().getDefaultState(), 8
                         )
-                ).range(32).squared().count(20)
+                ).range(32).square().count(20)
         );
 
         ORE_TIN_CONFIG = Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, "ore_tin",
-                Feature.ORE.configured(
+                Feature.ORE.withConfiguration(
                         new OreFeatureConfig(
-                                OreFeatureConfig.FillerBlockType.NATURAL_STONE,
-                                OIBlocks.oretinstone.get().defaultBlockState(), 8
+                                OreFeatureConfig.FillerBlockType.BASE_STONE_NETHER,
+                                Blocks.oretinstone.get().getDefaultState(), 8
                         )
-                ).range(64).squared().count(20)
+                ).range(64).square().count(20)
         );
     }
 }

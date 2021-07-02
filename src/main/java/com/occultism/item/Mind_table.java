@@ -7,11 +7,11 @@ import net.minecraft.world.World;
 
 public class Mind_table extends Item {
     public Mind_table() {
-        super(OIItems.defaultBuilder());
+        super(Items.defaultBuilder());
     }
 
     @Override
-    public void onUseTick(World p_219972_1_, LivingEntity p_219972_2_, ItemStack p_219972_3_, int p_219972_4_) {
-        super.onUseTick(p_219972_1_, p_219972_2_, p_219972_3_, p_219972_4_);
+    public void onUse(World worldIn, LivingEntity livingEntityIn, ItemStack stack, int count) {
+        super.onUse(worldIn, livingEntityIn, stack, count);
     }
 }

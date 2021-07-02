@@ -1,10 +1,9 @@
 package com.occultism.TileEntity;
 
 import com.occultism.api.NBTConstants;
-import com.occultism.item.OIItems;
+import com.occultism.item.Items;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -12,7 +11,7 @@ import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.templates.FluidHandlerItemStack;
+import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
@@ -29,7 +28,7 @@ public class ManaExtractorTileEntity extends TileEntity implements ITickableTile
         @Override
         public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
             //限定输入物品
-            return stack.getItem() == OIItems.bucket.get();
+            return stack.getItem() == Items.bucket.get();
         }
     };
 
@@ -40,7 +39,7 @@ public class ManaExtractorTileEntity extends TileEntity implements ITickableTile
         }
     };
 
-    private FluidHandlerItemStack fluidHandler = new FluidHandlerItemStack(OIItems.mana_bucket.get().getDefaultInstance(), 1) {
+    private FluidTank fluidHandler = new FluidTank(8000) {
         @Override
         public boolean isFluidValid(int tank, @Nonnull FluidStack stack) {
             tank = mana;
@@ -50,7 +49,7 @@ public class ManaExtractorTileEntity extends TileEntity implements ITickableTile
 
     private LazyOptional<ItemStackHandler> inputHandlerQuote = LazyOptional.of(() -> inputHandler);
     private LazyOptional<ItemStackHandler> outputHandlerQuote = LazyOptional.of(() -> outputHandler);
-    private LazyOptional<FluidHandlerItemStack> fluidHandlerQuote = LazyOptional.of(() -> fluidHandler);
+    private LazyOptional<FluidTank> fluidHandlerQuote = LazyOptional.of(() -> fluidHandler);
 
     public ManaExtractorTileEntity() {
         super(TileEntityTypeRegister.manaextractortileentity.get());
@@ -58,8 +57,8 @@ public class ManaExtractorTileEntity extends TileEntity implements ITickableTile
 
     //加载数据
     @Override
-    public void load(BlockState state, CompoundNBT nbt) {
-        super.load(state, nbt);
+    public void read(BlockState state, CompoundNBT nbt) {
+        super.read(state, nbt);
         this.mana = nbt.getInt(NBTConstants.MANA);
 
         inputHandlerQuote.ifPresent(handler -> handler.deserializeNBT(nbt.getCompound(NBTConstants.INPUT)));
@@ -68,19 +67,19 @@ public class ManaExtractorTileEntity extends TileEntity implements ITickableTile
 
     //保存数据
     @Override
-    public CompoundNBT save(CompoundNBT nbt) {
+    public CompoundNBT write(CompoundNBT nbt) {
         inputHandlerQuote.ifPresent(itemStackHandler -> nbt.put(NBTConstants.INPUT, itemStackHandler.serializeNBT()));
         inputHandlerQuote.ifPresent(itemStackHandler -> nbt.put(NBTConstants.OUTPUT, itemStackHandler.serializeNBT()));
 
         nbt.putInt(NBTConstants.MANA, mana);
-        return super.save(nbt);
+        return super.write(nbt);
     }
 
     @Override
     public void tick() {
-        if (!super.level.isClientSide()) {
+        if (!super.world.isRemote) {
             if (progressCheck() | finishedCheck() | manaCheck()) {
-                this.setChanged();
+                this.markDirty();
             }
         }
     }
@@ -96,10 +95,10 @@ public class ManaExtractorTileEntity extends TileEntity implements ITickableTile
     //进行
     private boolean progressCheck() {
         ItemStack inputInSlot = inputHandler.getStackInSlot(0);
-        if (inputInSlot.getItem() == Items.AIR) {
+        if (inputInSlot.getItem() == net.minecraft.item.Items.AIR) {
             progress = 0;
         } else if (inputInSlot.getCount() > 0
-                && inputInSlot.getItem() != Items.AIR) {
+                && inputInSlot.getItem() != net.minecraft.item.Items.AIR) {
             progress++;
         }
         return true;
@@ -112,7 +111,7 @@ public class ManaExtractorTileEntity extends TileEntity implements ITickableTile
                 && mana >= 1000) {
             progress = 0;
             mana = mana - 1000;
-            outputHandler.setStackInSlot(0, OIItems.mana_bucket.get().getDefaultInstance());
+            outputHandler.setStackInSlot(0, Items.mana_bucket.get().getDefaultInstance());
 
             inputInSlot.shrink(1);
 

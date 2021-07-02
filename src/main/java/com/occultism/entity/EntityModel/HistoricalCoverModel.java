@@ -17,22 +17,22 @@ public class HistoricalCoverModel extends EntityModel<HistoricalCover> {
     private final ModelRenderer body;
 
     public HistoricalCoverModel() {
-        texHeight = 64;
-        texWidth = 64;
+        textureHeight = 64;
+        textureWidth = 64;
 
         body = new ModelRenderer(this);
-        body.setPos(8.0F, 24.0F, -8.0F);
+        body.setRotationPoint(8.0F, 24.0F, -8.0F);
         //UVŒª÷√
-        body.setTexSize(16, 16)
+        body.setTextureOffset(16, 16)
                 .addBox(-16.0F, -16.0F, 0.0F, 16.0F, 10.0F, 16.0F, 0.0F, false);
     }
 
     @Override
-    public void setupAnim(HistoricalCover historicalCover, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+    public void setRotationAngles(HistoricalCover historicalCover, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
     }
 
     @Override
-    public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder builderIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
+    public void render(MatrixStack matrixStack, IVertexBuilder builderIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
         body.render(matrixStack, builderIn, packedLightIn, packedOverlayIn);
     }
 }

@@ -12,7 +12,7 @@ import org.apache.logging.log4j.Logger;
 
 public class HistoricalCover extends BaseEntity {
     private Logger logger = LogManager.getLogger();
-    private static final DataParameter<Integer> COUNTER = EntityDataManager.defineId(HistoricalCover.class, DataSerializers.INT);
+    private static final DataParameter<Integer> COUNTER = EntityDataManager.createKey(HistoricalCover.class, DataSerializers.VARINT);
 
     protected HistoricalCover(EntityType<? extends MonsterEntity> entityTypeIn, World worldIn) {
         super(entityTypeIn, worldIn);

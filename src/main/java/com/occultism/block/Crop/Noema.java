@@ -1,6 +1,6 @@
 package com.occultism.block.Crop;
 
-import com.occultism.item.OIItems;
+import com.occultism.item.Items;
 import net.minecraft.block.CropsBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -10,12 +10,12 @@ import javax.annotation.Nonnull;
 
 public class Noema extends CropsBlock {
     public Noema() {
-        super(Properties.of(Material.PLANT).sound(SoundType.CROP));
+        super(Properties.create(Material.PLANTS).sound(SoundType.PLANT));
     }
 
     @Nonnull
     @Override
-    protected IItemProvider getBaseSeedId() {
-        return OIItems.noema_seen.get();
+    protected IItemProvider getSeedsItem() {
+        return Items.noema_seen.get();
     }
 }

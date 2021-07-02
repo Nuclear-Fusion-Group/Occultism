@@ -1,21 +1,19 @@
 package com.occultism;
 
 import com.occultism.TileEntity.TileEntityTypeRegister;
-import com.occultism.block.OIBlocks;
+import com.occultism.block.Blocks;
 import com.occultism.entity.EntityTypeRegistry;
 import com.occultism.fluid.FluidRegister;
-import com.occultism.item.OIItems;
-import com.occultism.network.OINetwork;
+import com.occultism.item.Items;
+import com.occultism.network.Network;
 import com.occultism.world.AddFlower;
 import com.occultism.world.addOre;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvent;
@@ -56,9 +54,9 @@ public class Occultism {
         //流体注册
         FluidRegister.FLUIDS.register(FMLJavaModLoadingContext.get().getModEventBus());
         //物品注册
-        OIItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
+        Items.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
         //方块注册
-        OIBlocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
+        Blocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
         //TileEntity注册
         TileEntityTypeRegister.TILE_ENTITY.register(FMLJavaModLoadingContext.get().getModEventBus());
         //Entity注册
@@ -66,7 +64,7 @@ public class Occultism {
     }
 
     private void onCommonSetup(final FMLCommonSetupEvent event) {
-        event.enqueueWork(OINetwork::registerMessage);
+        event.enqueueWork(Network::registerMessage);
     }
 
     private void onClientSetup(final FMLClientSetupEvent event) {
@@ -91,34 +89,34 @@ public class Occultism {
     public void onBuckte(PlayerInteractEvent.RightClickBlock event) {
 
         BlockRayTraceResult result = event.getHitVec();
-        BlockPos blockPos = result.getBlockPos();
-        Direction direction = result.getDirection();
-        BlockPos blockPos1 = blockPos.relative(direction);
+        BlockPos blockPos = result.getPos();
+        Direction direction = result.getFace();
+        BlockPos blockPos1 = blockPos.offset(direction);
 
         World world = event.getWorld();
         PlayerEntity player = event.getPlayer();
-        ItemStack itemStack = player.getItemInHand(Hand.MAIN_HAND);
-        ItemStack itemStack1 = player.getItemInHand(Hand.OFF_HAND);
+        ItemStack itemStack = player.getHeldItem(Hand.MAIN_HAND);
+        ItemStack itemStack1 = player.getHeldItem(Hand.OFF_HAND);
         FluidState fluidState;
 
         //玻璃破碎声音事件
-        SoundEvent soundEvent = SoundEvents.GLASS_BREAK;
+        SoundEvent soundEvent = SoundEvents.BLOCK_GLASS_BREAK;
 
         fluidState = event.getWorld().getFluidState(blockPos1);
         //判断是否为瓶子
-        if (itemStack.getItem() != OIItems.bucket.get() && itemStack.getItem() != Items.AIR && itemStack.getItem() != OIItems.mana_bucket.get()) {
+        if (itemStack.getItem() != Items.bucket.get() && itemStack.getItem() != net.minecraft.item.Items.AIR && itemStack.getItem() != Items.mana_bucket.get()) {
             //判断流体堆是否相同
-            if (fluidState == OIBlocks.manarubikcube.get().getFluidState(OIBlocks.manarubikcube.get().defaultBlockState())) {
+            if (fluidState == Blocks.manarubikcube.get().getFluidState(Blocks.manarubikcube.get().getDefaultState())) {
                 //此处为修改世界中的流体
-                world.setBlockAndUpdate(blockPos1, Blocks.WATER.defaultBlockState());
+                world.setBlockState(blockPos1, net.minecraft.block.Blocks.WATER.getDefaultState());
             }
         } else {
             //判断是否为其他流体 是的话移除瓶子 并且播放玻璃破碎声音事件
-            if (fluidState != OIBlocks.manarubikcube.get().getFluidState(OIBlocks.manarubikcube.get().defaultBlockState()) && fluidState != Fluids.EMPTY.defaultFluidState()) {
-                if (itemStack.getItem() == OIItems.bucket.get()) {
+            if (fluidState != Blocks.manarubikcube.get().getFluidState(Blocks.manarubikcube.get().getDefaultState()) && fluidState != Fluids.EMPTY.getDefaultState()) {
+                if (itemStack.getItem() == Items.bucket.get()) {
                     itemStack.shrink(1);
                     player.playSound(soundEvent, 1.0F, 1.0F);
-                } else if (itemStack1.getItem() == OIItems.bucket.get()) {
+                } else if (itemStack1.getItem() == Items.bucket.get()) {
                     itemStack1.shrink(1);
                     player.playSound(soundEvent, 1.0F, 1.0F);
                 }

@@ -1,6 +1,6 @@
 package com.occultism.world;
 
-import com.occultism.block.OIBlocks;
+import com.occultism.block.Blocks;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
@@ -21,12 +21,12 @@ public class AddFlower {
     @SubscribeEvent
     public static void setup(FMLCommonSetupEvent event) {
         FLOWER = Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, "flower",
-                Feature.RANDOM_PATCH.configured(
+                Feature.RANDOM_PATCH.withConfiguration(
                         (new BlockClusterFeatureConfig.Builder(
-                                new WeightedBlockStateProvider().add(OIBlocks.moon_flower.get().defaultBlockState(), 2),
+                                new WeightedBlockStateProvider().addWeightedBlockstate(Blocks.moon_flower.get().getDefaultState(), 2),
                                 new SimpleBlockPlacer())
                         ).tries(2).build()
-                ).decorated(Placement.TOP_SOLID_HEIGHTMAP.configured(new NoPlacementConfig()))
+                ).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(new NoPlacementConfig()))
         );
     }
 }

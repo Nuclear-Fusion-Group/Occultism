@@ -17,10 +17,10 @@ public class BaseEntity extends MonsterEntity {
         this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
         this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
         //伤害的实体
-        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers(ZombifiedPiglinEntity.class));
+        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setCallsForHelp(ZombifiedPiglinEntity.class));
         //玩家实体
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
-        this.getAttributes().getBaseValue(Attributes.MAX_HEALTH);
-        this.getAttributes().getBaseValue(Attributes.ATTACK_DAMAGE);
+        this.getAttributeManager().getAttributeBaseValue(Attributes.MAX_HEALTH);
+        this.getAttributeManager().getAttributeBaseValue(Attributes.ATTACK_DAMAGE);
     }
 }

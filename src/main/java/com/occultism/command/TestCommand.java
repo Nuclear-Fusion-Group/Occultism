@@ -20,23 +20,23 @@ public class TestCommand implements Command<CommandSource> {
     public int run(CommandContext<CommandSource> context) {
 
         try {
-            item = context.getSource().getPlayerOrException().getItemInHand(Hand.MAIN_HAND);
+            item = context.getSource().asPlayer().getHeldItem(Hand.MAIN_HAND);
         } catch (CommandSyntaxException e) {
             e.printStackTrace();
         }
 
         CompoundNBT nbt = item.getOrCreateTag();
-        Iterator<String> iterator = nbt.getAllKeys().iterator();
+        Iterator<String> iterator = nbt.keySet().iterator();
         String key;
 
-        context.getSource().sendSuccess(new TranslationTextComponent("物品id:" + item.getDescriptionId()), false);
-        context.getSource().sendSuccess(new TranslationTextComponent("物品tags内容:" + item.getItem().getTags()), false);
-        context.getSource().sendSuccess(new TranslationTextComponent("物品nbt内容:"), false);
+        context.getSource().sendFeedback(new TranslationTextComponent("物品id:" + item.getTranslationKey()), false);
+        context.getSource().sendFeedback(new TranslationTextComponent("物品tags内容:" + item.getItem().getTags()), false);
+        context.getSource().sendFeedback(new TranslationTextComponent("物品nbt内容:"), false);
 
         while (true) {
             if (iterator.hasNext()) {
                 key = iterator.next();
-                context.getSource().sendSuccess(new TranslationTextComponent(key + ":" + nbt.get(key)), false);
+                context.getSource().sendFeedback(new TranslationTextComponent(key + ":" + nbt.get(key)), false);
             } else {
                 break;
             }

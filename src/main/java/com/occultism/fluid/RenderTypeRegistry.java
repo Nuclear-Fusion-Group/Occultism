@@ -18,8 +18,8 @@ public class RenderTypeRegistry {
     public static void onRenderTypeSetup(FMLClientSetupEvent event) {
         event.enqueueWork(
                 () -> {
-                    RenderTypeLookup.setRenderLayer(FluidRegister.mana_fluid.get(), RenderType.translucent());
-                    RenderTypeLookup.setRenderLayer(FluidRegister.mana_fluid_flowing.get(), RenderType.translucent());
+                    RenderTypeLookup.setRenderLayer(FluidRegister.mana_fluid.get(), RenderType.getGlintTranslucent());
+                    RenderTypeLookup.setRenderLayer(FluidRegister.mana_fluid_flowing.get(), RenderType.getGlintTranslucent());
                 }
         );
     }

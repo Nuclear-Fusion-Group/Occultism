@@ -1,6 +1,6 @@
 package com.occultism.datagen.LootTable.Block;
 
-import com.occultism.block.OIBlocks;
+import com.occultism.block.Blocks;
 import net.minecraft.block.Block;
 import net.minecraftforge.fml.RegistryObject;
 
@@ -10,7 +10,7 @@ import java.util.List;
 
 public class BlockLootTable extends BaseBlockLootTables {
 
-    Field[] key = OIBlocks.class.getFields();
+    Field[] key = Blocks.class.getFields();
     Object fieldVal;
     List<Block> blocks = new ArrayList<>();
     Block block;
@@ -20,7 +20,7 @@ public class BlockLootTable extends BaseBlockLootTables {
             //如果不是这个类型就跳过该循环
             if (val.getType() != RegistryObject.class)
                 continue;
-            if (val.getName().equals(OIBlocks.manarubikcube.toString()))
+            if (val.getName().equals(Blocks.manarubikcube.toString()))
                 continue;
             try {
                 //获取字段的值
@@ -36,7 +36,7 @@ public class BlockLootTable extends BaseBlockLootTables {
 
     @Override
     protected void addTables() {
-        skip(OIBlocks.manarubikcube.get().getBlock());
+        skip(Blocks.manarubikcube.get().getBlock());
         dropSelfWithContents(getBlocks());
     }
 }

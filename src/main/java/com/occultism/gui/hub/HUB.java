@@ -18,8 +18,8 @@ public class HUB extends AbstractGui {
     private final ResourceLocation HUD = new ResourceLocation(Occultism.ID, "textures/gui/hud.png");
 
     public HUB(MatrixStack matrixStack) {
-        this.width = Minecraft.getInstance().getMainRenderTarget().width;
-        this.height = Minecraft.getInstance().getMainRenderTarget().height;
+        this.width = Minecraft.getInstance().getMainWindow().getWidth();
+        this.height = Minecraft.getInstance().getMainWindow().getHeight();
         this.minecraft = Minecraft.getInstance();
         this.matrixStack = matrixStack;
         playerEntity = minecraft.player;
@@ -31,7 +31,7 @@ public class HUB extends AbstractGui {
 
     public void render() {
         RenderSystem.clearColor(1.0F, 1.0F, 1.0F, 1.0F);
-        this.minecraft.getTextureManager().bind(HUD);
+        this.minecraft.getTextureManager().bindTexture(HUD);
         //ªÒ»°Œ€»æ∂»
         contaminated = playerEntity.getPersistentData().getInt("contaminated");
         blit(matrixStack, 4, 4, 0, 0, 16, 64, 16, 64);

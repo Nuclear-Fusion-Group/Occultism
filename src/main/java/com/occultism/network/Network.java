@@ -13,7 +13,7 @@ import net.minecraftforge.fml.network.simple.SimpleChannel;
  * 因为不知道做什么就把这个肯定会用上的东西写了
  * 虽然代码来自Boson教程，不过可能存在引用不规范的问题，望前辈们指导改正
  */
-public class OINetwork {
+public class Network {
     public static SimpleChannel INSTANCE;
     public static final String VERSION = "1.0";
     private static int ID = 0;

@@ -21,7 +21,7 @@ import javax.annotation.Nonnull;
 
 public class ManaExtractor extends Block implements IHasTileEntity {
     public ManaExtractor() {
-        super(OIBlocks.defaultBuilder());
+        super(Blocks.defaultBuilder());
     }
 
     @Override
@@ -42,11 +42,11 @@ public class ManaExtractor extends Block implements IHasTileEntity {
     //ÓÒ»÷·½¿éÊÂ¼þ
     @Nonnull
     @Override
-    public ActionResultType use(BlockState state, World world, BlockPos blockPos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult blockRayTraceResult) {
-        if (world.isClientSide) {
+    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos blockPos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult blockRayTraceResult) {
+        if (world.isRemote) {
             DistExecutor.safeCallWhenOn(Dist.CLIENT, () -> OpenGUI::new);
         }
-        return super.use(state, world, blockPos, playerEntity, hand, blockRayTraceResult);
+        return super.onBlockActivated(state, world, blockPos, playerEntity, hand, blockRayTraceResult);
     }
 
 

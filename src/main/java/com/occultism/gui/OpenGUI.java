@@ -6,7 +6,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 
 public class OpenGUI {
     public OpenGUI() {
-        Minecraft.getInstance().setScreen(new ManaExtractorGUI(new TranslationTextComponent(Occultism.ID, ".test")));
+        Minecraft.getInstance().forcedScreenTick(new ManaExtractorGUI(new TranslationTextComponent(Occultism.ID, ".test")));
     }
 }
 
