@@ -9,7 +9,7 @@ import net.minecraft.potion.Effect;
 import net.minecraft.potion.Effects;
 
 /**
- * 该类参考了AOA3
+ * 该类参考了Botania
  */
 public class Flowers extends FlowerBlock {
     public final DyeColor color;
@@ -20,7 +20,7 @@ public class Flowers extends FlowerBlock {
     }
 
     public Flowers(DyeColor color){
-        this(color, Blocks.defaultBuilder(Material.PLANTS).sound(SoundType.PLANT).notSolid());
+        this(color, Blocks.defaultBuilder(Material.PLANTS).sound(SoundType.PLANT).doesNotBlockMovement().zeroHardnessAndResistance());
     }
 
 

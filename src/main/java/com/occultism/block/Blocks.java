@@ -6,13 +6,18 @@ import com.occultism.block.Crop.Noema;
 import com.occultism.block.Crop.StarFantasyFruit;
 import com.occultism.block.Flower.Flowers;
 import com.occultism.fluid.FluidRegister;
-import net.minecraft.block.*;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.CropsBlock;
+import net.minecraft.block.FlowingFluidBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.DyeColor;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.ArrayList;
 
 public class Blocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Occultism.ID);
@@ -53,6 +58,10 @@ public class Blocks {
     public static final RegistryObject<CropsBlock> mandela = BLOCKS.register("mandela", Mandela::new);
     public static final RegistryObject<CropsBlock> noema = BLOCKS.register("noema", Noema::new);
     public static final RegistryObject<CropsBlock> star_fantasy_fruit = BLOCKS.register("star_fantasy_fruit", StarFantasyFruit::new);
+
+    public static ArrayList<RegistryObject<Block>> getBlocks() {
+        return new ArrayList<>(BLOCKS.getEntries());
+    }
 
     /**
      * 方块构造方法

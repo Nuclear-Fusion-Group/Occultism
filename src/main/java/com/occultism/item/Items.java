@@ -79,7 +79,6 @@ public class Items {
 
     /**
      * 自动导入到标签页
-     * 不知道为啥是用的tab 而不是group
      */
     public static Item.Properties defaultBuilder() {
         return new Item.Properties().group(creativeTab);

@@ -12,6 +12,7 @@ import net.minecraft.loot.LootTable;
 import net.minecraft.loot.functions.CopyNbt;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
+import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.items.IItemHandler;
 
 import javax.annotation.Nonnull;
@@ -36,7 +37,7 @@ public abstract class BaseBlockLootTables extends BlockLootTables {
      * @param table
      */
     @Override
-    protected void registerLootTable(@Nonnull Block block, @Nonnull LootTable.Builder table) {
+    protected void registerLootTable(Block block,LootTable.Builder table) {
         super.registerLootTable(block, table);
         knownBlocks.add(block);
     }
@@ -76,10 +77,10 @@ public abstract class BaseBlockLootTables extends BlockLootTables {
      *
      * @param blocks
      */
-    protected void dropSelfWithContents(List<Block> blocks) {
-        for (Block block1 : blocks) {
+    protected void dropSelfWithContents(List<RegistryObject<Block>> blocks) {
+        for (RegistryObject<Block> block1 : blocks) {
             //获取方块
-            Block block = block1.getBlock();
+            Block block = block1.get();
             //判断是否为已注册方块
             if (skipBlock(block)) {
                 continue;
