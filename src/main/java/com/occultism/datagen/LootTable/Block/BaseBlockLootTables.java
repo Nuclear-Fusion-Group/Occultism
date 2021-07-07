@@ -37,7 +37,7 @@ public abstract class BaseBlockLootTables extends BlockLootTables {
      * @param table
      */
     @Override
-    protected void registerLootTable(Block block,LootTable.Builder table) {
+    protected void registerLootTable(Block block, LootTable.Builder table) {
         super.registerLootTable(block, table);
         knownBlocks.add(block);
     }
@@ -107,12 +107,17 @@ public abstract class BaseBlockLootTables extends BlockLootTables {
             }
             //判断是否有数据 如果没有就生成默认战利品表
             if (!hasData) {
-                dropping(block);
+                registerLootTable(block, LootTable.builder().addLootPool(withExplosionDecay(block, LootPool.builder()
+                                .name("main")
+                                .rolls(ConstantRange.of(1))
+                                .addEntry(ItemLootEntry.builder(block))
+                        ))
+                );
             } else {
                 registerLootTable(block, LootTable.builder().addLootPool(withExplosionDecay(block, LootPool.builder()
-                        .name("main")
-                        .rolls(ConstantRange.of(1))
-                        .addEntry(ItemLootEntry.builder(block).acceptFunction(nbtBuilder))
+                                .name("main")
+                                .rolls(ConstantRange.of(1))
+                                .addEntry(ItemLootEntry.builder(block).acceptFunction(nbtBuilder))
                         ))
                 );
             }

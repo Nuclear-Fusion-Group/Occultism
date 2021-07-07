@@ -1,0 +1,38 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "name": "main",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:copy_nbt",
+              "source": "block_entity",
+              "ops": [
+                {
+                  "source": "Items",
+                  "target": "occultism_data.Items",
+                  "op": "replace"
+                },
+                {
+                  "source": "mana",
+                  "target": "occultism_data.mana",
+                  "op": "replace"
+                }
+              ]
+            }
+          ],
+          "name": "occultism:mana_extractor"
+        }
+      ],
+      "functions": [
+        {
+          "function": "minecraft:explosion_decay"
+        }
+      ]
+    }
+  ]
+}
